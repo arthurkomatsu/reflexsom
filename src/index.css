@@ -241,6 +241,31 @@
   animation: heroGlow 8s ease-in-out infinite alternate;
 }
 
+/* Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .hero-bg::before {
+    animation: none;
+  }
+
+  .particle {
+    animation: none;
+  }
+
+  .light-rays::before,
+  .light-rays::after {
+    animation: none;
+  }
+}
+
 @keyframes heroGlow {
   0% {
     opacity: 0.5;

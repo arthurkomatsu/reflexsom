@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Instagram } from 'lucide-react';
 import { buildWhatsAppUrl, INSTAGRAM_URL, WHATSAPP_MESSAGES } from '../constants';
@@ -19,7 +19,28 @@ const navItems = [
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('#inicio');
   const { isScrolled } = useScrollPosition(50);
+
+  // Track active section based on scroll position
+  useEffect(() => {
+    const handleScroll = () => {
+      const sections = navItems.map((item) => item.href.substring(1));
+      const scrollPosition = window.scrollY + 100;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const section = document.getElementById(sections[i]);
+        if (section && section.offsetTop <= scrollPosition) {
+          setActiveSection(`#${sections[i]}`);
+          break;
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll(); // Initial check
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     handleNavClick(e, href, () => setIsOpen(false));
@@ -53,17 +74,28 @@ export default function Navbar() {
           </motion.a>
 
           {/* Desktop Navigation */}
-          <div className="hidden lg:flex items-center gap-8">
+          <div
+            className="hidden lg:flex items-center gap-8"
+            role="navigation"
+            aria-label="Navegação principal"
+          >
             {navItems.map((item) => (
               <motion.a
                 key={item.label}
                 href={item.href}
                 onClick={(e) => onNavClick(e, item.href)}
-                className="text-sm font-medium text-white/80 hover:text-primary transition-colors relative group"
+                className={`text-sm font-medium transition-colors relative group ${
+                  activeSection === item.href ? 'text-primary' : 'text-white/80 hover:text-primary'
+                }`}
                 whileHover={{ y: -2 }}
+                aria-current={activeSection === item.href ? 'page' : undefined}
               >
                 {item.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-primary transition-all duration-300 ${
+                    activeSection === item.href ? 'w-full' : 'w-0 group-hover:w-full'
+                  }`}
+                />
               </motion.a>
             ))}
           </div>
@@ -100,6 +132,8 @@ export default function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             whileTap={{ scale: 0.9 }}
             aria-label={isOpen ? 'Fechar menu' : 'Abrir menu'}
+            aria-expanded={isOpen}
+            aria-controls="mobile-menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </motion.button>
@@ -110,11 +144,14 @@ export default function Navbar() {
       <AnimatePresence>
         {isOpen && (
           <motion.div
+            id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
             className="lg:hidden bg-dark-50 border-t border-white/10"
+            role="navigation"
+            aria-label="Menu de navegação móvel"
           >
             <div className="section-container py-6 flex flex-col gap-4">
               {navItems.map((item, index) => (
@@ -125,7 +162,12 @@ export default function Navbar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.05 }}
-                  className="text-lg font-medium text-white/80 hover:text-primary transition-colors py-2"
+                  className={`text-lg font-medium transition-colors py-2 ${
+                    activeSection === item.href
+                      ? 'text-primary'
+                      : 'text-white/80 hover:text-primary'
+                  }`}
+                  aria-current={activeSection === item.href ? 'page' : undefined}
                 >
                   {item.label}
                 </motion.a>

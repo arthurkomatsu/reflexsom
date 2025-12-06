@@ -13,6 +13,7 @@ import {
 } from 'lucide-react';
 import { useState } from 'react';
 import { buildWhatsAppUrl, WHATSAPP_MESSAGES } from '../constants';
+import { useFocusTrap } from '../hooks/useFocusTrap';
 
 interface EquipmentItem {
   id: string;
@@ -247,6 +248,9 @@ export default function Equipment() {
 
   const closeModal = () => setSelectedEquipment(null);
 
+  // Focus trap for modal
+  const modalRef = useFocusTrap(selectedEquipment !== null, closeModal);
+
   return (
     <section id="equipamentos" className="section-padding bg-dark-50 relative overflow-hidden">
       {/* Background decoration */}
@@ -344,8 +348,12 @@ export default function Equipment() {
             transition={{ duration: 0.3 }}
             className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-dark/90 backdrop-blur-md"
             onClick={closeModal}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="modal-title"
           >
             <motion.div
+              ref={modalRef}
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -357,6 +365,7 @@ export default function Equipment() {
               <button
                 onClick={closeModal}
                 className="absolute top-4 right-4 z-10 p-2 bg-dark/80 hover:bg-primary rounded-full text-white/60 hover:text-white transition-all duration-300"
+                aria-label="Fechar detalhes do equipamento"
               >
                 <X className="w-6 h-6" />
               </button>
@@ -374,7 +383,7 @@ export default function Equipment() {
                   <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-sm font-medium rounded-full mb-2">
                     {selectedEquipment.tagline}
                   </span>
-                  <h3 className="font-heading text-4xl md:text-5xl text-white">
+                  <h3 id="modal-title" className="font-heading text-4xl md:text-5xl text-white">
                     {selectedEquipment.name}
                   </h3>
                 </div>

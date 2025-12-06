@@ -6,6 +6,7 @@ import About from './components/About';
 import Services from './components/Services';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import BackToTop from './components/BackToTop';
 import SkipToContent from './components/SkipToContent';
 import ErrorBoundary from './components/ErrorBoundary';
 import PageTransition from './components/PageTransition';
@@ -72,8 +73,9 @@ function App() {
             </main>
             <Footer />
 
-            {/* Floating WhatsApp Button */}
+            {/* Floating Buttons */}
             <WhatsAppButton />
+            <BackToTop />
           </div>
         </PageTransition>
       </AnimatePresence>

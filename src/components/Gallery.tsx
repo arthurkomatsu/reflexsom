@@ -80,6 +80,7 @@ export default function Gallery() {
                   colorScheme: 'dark',
                 }}
                 title="Feed do Instagram da Reflex Som"
+                aria-label={`Visualizar feed do Instagram @${INSTAGRAM_USERNAME}`}
                 loading="lazy"
                 onLoad={() => setIsLoading(false)}
               />

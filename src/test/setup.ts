@@ -1,6 +1,13 @@
 import '@testing-library/jest-dom';
 import { vi } from 'vitest';
 
+// Extend window type for tests
+declare global {
+  interface Window {
+    gtag?: (...args: unknown[]) => void;
+  }
+}
+
 // Mock IntersectionObserver
 class MockIntersectionObserver {
   observe = vi.fn();

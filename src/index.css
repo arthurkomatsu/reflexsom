@@ -33,6 +33,16 @@
   ::-webkit-scrollbar-thumb:hover {
     @apply bg-primary-500;
   }
+
+  /* Focus visible styles for keyboard navigation */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-primary;
+  }
+
+  /* Remove default focus outline when not using keyboard */
+  :focus:not(:focus-visible) {
+    @apply outline-none;
+  }
 }
 
 /* Custom Component Styles */

@@ -3,6 +3,9 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -11,7 +14,20 @@
     "format": "prettier --write \"src/**/*.{ts,tsx,css}\"",
     "format:check": "prettier --check \"src/**/*.{ts,tsx,css}\"",
     "typecheck": "tsc --noEmit",
-    "preview": "vite preview"
+    "knip": "knip",
+    "knip:fix": "knip --fix",
+    "validate": "npm run format:check && npm run lint && npm run typecheck && npm run knip",
+    "preview": "vite preview",
+    "prepare": "husky"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.css": [
+      "prettier --write"
+    ]
   },
   "dependencies": {
     "framer-motion": "^11.11.0",
@@ -22,6 +38,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.13.0",
+    "@lhci/cli": "^0.15.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
@@ -30,6 +47,9 @@
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
+    "husky": "^9.1.7",
+    "knip": "^5.71.0",
+    "lint-staged": "^15.5.2",
     "postcss": "^8.4.47",
     "prettier": "^3.7.4",
     "tailwindcss": "^3.4.14",

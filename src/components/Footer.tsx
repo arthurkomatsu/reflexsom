@@ -1,4 +1,6 @@
 import { Instagram, Phone, MapPin, ArrowUp } from 'lucide-react';
+import { buildWhatsAppUrl, INSTAGRAM_URL, WHATSAPP_PHONE_FORMATTED, COMPANY } from '../constants';
+import { handleNavClick as handleNavClickUtil } from '../utils/scroll';
 
 const footerLinks = {
   servicos: [
@@ -18,7 +20,7 @@ const footerLinks = {
   empresa: [
     { label: 'Sobre Nós', href: '#sobre' },
     { label: 'Portfólio', href: '#galeria' },
-    { label: 'Preços', href: '#precos' },
+    { label: 'Depoimentos', href: '#depoimentos' },
     { label: 'Contato', href: '#contato' },
   ],
 };
@@ -28,12 +30,8 @@ export default function Footer() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+  const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    handleNavClickUtil(e, href);
   };
 
   return (
@@ -43,7 +41,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Brand */}
           <div className="col-span-2 md:col-span-4 lg:col-span-2">
-            <a href="#inicio" onClick={(e) => handleNavClick(e, '#inicio')}>
+            <a href="#inicio" onClick={(e) => onNavClick(e, '#inicio')}>
               <img
                 src="/assets/logo-reflex-som.jpg"
                 alt="Reflex Som"
@@ -56,7 +54,7 @@ export default function Footer() {
             </p>
             <div className="flex items-center gap-4">
               <a
-                href="https://www.instagram.com/reflex_som"
+                href={INSTAGRAM_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-primary hover:text-white transition-all"
@@ -65,7 +63,7 @@ export default function Footer() {
                 <Instagram className="w-5 h-5" />
               </a>
               <a
-                href="https://wa.me/5561983033900"
+                href={buildWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center text-white/60 hover:bg-green-500 hover:text-white transition-all"
@@ -84,7 +82,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
+                    onClick={(e) => onNavClick(e, link.href)}
                     className="text-white/60 text-sm hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -102,7 +100,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
+                    onClick={(e) => onNavClick(e, link.href)}
                     className="text-white/60 text-sm hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -120,7 +118,7 @@ export default function Footer() {
                 <li key={link.label}>
                   <a
                     href={link.href}
-                    onClick={(e) => handleNavClick(e, link.href)}
+                    onClick={(e) => onNavClick(e, link.href)}
                     className="text-white/60 text-sm hover:text-primary transition-colors"
                   >
                     {link.label}
@@ -133,11 +131,11 @@ export default function Footer() {
             <div className="mt-6 space-y-2">
               <div className="flex items-center gap-2 text-sm text-white/60">
                 <Phone className="w-4 h-4 text-primary" />
-                <span>(61) 98303-3900</span>
+                <span>{WHATSAPP_PHONE_FORMATTED}</span>
               </div>
               <div className="flex items-center gap-2 text-sm text-white/60">
                 <MapPin className="w-4 h-4 text-primary" />
-                <span>Park Way, Brasília - DF</span>
+                <span>{COMPANY.location}</span>
               </div>
             </div>
           </div>

@@ -1,14 +1,9 @@
 import { motion } from 'framer-motion';
 import { ChevronDown, Sparkles, Zap } from 'lucide-react';
+import { buildWhatsAppUrl, WHATSAPP_MESSAGES, COMPANY } from '../constants';
+import { scrollToSection } from '../utils/scroll';
 
 export default function Hero() {
-  const scrollToSection = (sectionId: string) => {
-    const element = document.querySelector(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
   return (
     <section
       id="inicio"
@@ -97,11 +92,19 @@ export default function Hero() {
           className="flex flex-wrap justify-center gap-8 md:gap-16 mb-12"
         >
           {[
-            { value: '+30', label: 'Anos de experiência' },
-            { value: '+1500', label: 'Eventos realizados' },
-            { value: '+10k', label: 'Músicas no Karaokê' },
-          ].map((stat, index) => (
-            <div key={index} className="text-center">
+            {
+              id: 'experience',
+              value: `+${COMPANY.yearsOfExperience}`,
+              label: 'Anos de experiência',
+            },
+            { id: 'events', value: `+${COMPANY.eventsCompleted}`, label: 'Eventos realizados' },
+            {
+              id: 'songs',
+              value: `+${(COMPANY.karaokesSongs / 1000).toFixed(0)}k`,
+              label: 'Músicas no Karaokê',
+            },
+          ].map((stat) => (
+            <div key={stat.id} className="text-center">
               <div className="font-heading text-4xl md:text-5xl text-primary">{stat.value}</div>
               <div className="text-sm text-white/60 mt-1">{stat.label}</div>
             </div>
@@ -116,7 +119,7 @@ export default function Hero() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4"
         >
           <motion.a
-            href="https://wa.me/5561983033900?text=Olá! Gostaria de solicitar um orçamento."
+            href={buildWhatsAppUrl(WHATSAPP_MESSAGES.quote)}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary"

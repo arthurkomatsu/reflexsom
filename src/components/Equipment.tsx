@@ -1,7 +1,18 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ArrowRight, Check, Info, X, Sparkles, Clock, Users, Shield, ChevronRight } from 'lucide-react';
+import {
+  ArrowRight,
+  Check,
+  Info,
+  X,
+  Sparkles,
+  Clock,
+  Users,
+  Shield,
+  ChevronRight,
+} from 'lucide-react';
 import { useState } from 'react';
+import { buildWhatsAppUrl, WHATSAPP_MESSAGES } from '../constants';
 
 interface EquipmentItem {
   id: string;
@@ -37,8 +48,10 @@ const equipment: EquipmentItem[] = [
     ],
     idealFor: 'Shows, inaugurações, eventos culturais e hotéis.',
     detailedInfo: {
-      whatIs: 'O Sky Walker é um sistema de holofotes profissionais de altíssima potência, originalmente desenvolvido para sinalização aérea e hoje amplamente utilizado em grandes eventos. Esses refletores projetam feixes de luz intensos que podem ser vistos a quilômetros de distância, criando um espetáculo visual impressionante no céu noturno.',
-      howItWorks: 'Cada unidade possui lâmpadas de 4000W que geram feixes luminosos concentrados. O sistema conta com bases motorizadas que permitem movimentos giratórios sincronizados, criando coreografias de luz no céu. A varredura de 90° possibilita cobrir grandes áreas com padrões dinâmicos.',
+      whatIs:
+        'O Sky Walker é um sistema de holofotes profissionais de altíssima potência, originalmente desenvolvido para sinalização aérea e hoje amplamente utilizado em grandes eventos. Esses refletores projetam feixes de luz intensos que podem ser vistos a quilômetros de distância, criando um espetáculo visual impressionante no céu noturno.',
+      howItWorks:
+        'Cada unidade possui lâmpadas de 4000W que geram feixes luminosos concentrados. O sistema conta com bases motorizadas que permitem movimentos giratórios sincronizados, criando coreografias de luz no céu. A varredura de 90° possibilita cobrir grandes áreas com padrões dinâmicos.',
       benefits: [
         'Atrai atenção de longas distâncias, perfeito para divulgação',
         'Cria atmosfera épica e memorável para qualquer evento',
@@ -52,7 +65,8 @@ const equipment: EquipmentItem[] = [
         'Réveillon e celebrações ao ar livre',
         'Hotéis e resorts como atração noturna',
       ],
-      technicalDetails: 'Trabalhamos com conjuntos de 2 a 8 unidades. Cada Sky Walker pesa aproximadamente 80kg e requer alimentação elétrica de 220V. O setup completo leva cerca de 2 horas e nossa equipe técnica opera os equipamentos durante todo o evento.',
+      technicalDetails:
+        'Trabalhamos com conjuntos de 2 a 8 unidades. Cada Sky Walker pesa aproximadamente 80kg e requer alimentação elétrica de 220V. O setup completo leva cerca de 2 horas e nossa equipe técnica opera os equipamentos durante todo o evento.',
       tips: 'Para melhor efeito visual, recomendamos o uso em noites com pouca nebulosidade. Combine com máquina de fumaça para intensificar os feixes de luz.',
     },
   },
@@ -71,8 +85,10 @@ const equipment: EquipmentItem[] = [
     ],
     idealFor: 'Casamentos, 15 anos, festas Frozen e cenas teatrais.',
     detailedInfo: {
-      whatIs: 'O Low Fog é uma máquina especializada que produz uma névoa densa que permanece rente ao chão, criando o famoso efeito de "andar nas nuvens". Diferente do gelo seco tradicional (CO²), utiliza um sistema de refrigeração que torna a fumaça mais pesada que o ar.',
-      howItWorks: 'A máquina aquece um fluido especial que se transforma em vapor. Esse vapor passa por um sistema de refrigeração que o resfria rapidamente, tornando-o mais denso que o ar ambiente. O resultado é uma névoa que se espalha pelo chão e permanece baixa por vários minutos.',
+      whatIs:
+        'O Low Fog é uma máquina especializada que produz uma névoa densa que permanece rente ao chão, criando o famoso efeito de "andar nas nuvens". Diferente do gelo seco tradicional (CO²), utiliza um sistema de refrigeração que torna a fumaça mais pesada que o ar.',
+      howItWorks:
+        'A máquina aquece um fluido especial que se transforma em vapor. Esse vapor passa por um sistema de refrigeração que o resfria rapidamente, tornando-o mais denso que o ar ambiente. O resultado é uma névoa que se espalha pelo chão e permanece baixa por vários minutos.',
       benefits: [
         'Não utiliza CO² - muito mais seguro para ambientes fechados',
         'Não causa desconforto respiratório nos convidados',
@@ -86,7 +102,8 @@ const equipment: EquipmentItem[] = [
         'Produções teatrais e audiovisuais',
         'Primeiro beijo ou dança dos noivos',
       ],
-      technicalDetails: 'Utilizamos a renomada JEM Martin 1500, referência mundial em efeitos especiais. O equipamento cobre áreas de até 50m² e o efeito pode durar de 3 a 5 minutos por acionamento. Fornecemos fluido suficiente para múltiplos acionamentos.',
+      technicalDetails:
+        'Utilizamos a renomada JEM Martin 1500, referência mundial em efeitos especiais. O equipamento cobre áreas de até 50m² e o efeito pode durar de 3 a 5 minutos por acionamento. Fornecemos fluido suficiente para múltiplos acionamentos.',
       tips: 'O efeito fica mais intenso em ambientes climatizados. Para casamentos, recomendamos combinar com iluminação cênica para realçar a névoa.',
     },
   },
@@ -100,8 +117,10 @@ const equipment: EquipmentItem[] = [
     specs: ['Neve realista', 'Líquido atóxico', 'Cobertura ampla', 'Fácil limpeza'],
     idealFor: 'Festas de Natal, eventos temáticos e produções.',
     detailedInfo: {
-      whatIs: 'A Máquina de Neve produz flocos de espuma que imitam com perfeição a neve natural. Os flocos são leves, caem suavemente e criam uma atmosfera mágica de inverno, mesmo no calor brasileiro. É a solução perfeita para quem quer trazer o encanto da neve para seu evento.',
-      howItWorks: 'A máquina mistura ar com um fluido especial à base de sabão neutro, criando pequenas bolhas que se assemelham a flocos de neve. Um ventilador interno dispersa os flocos em uma área ampla, simulando uma nevasca suave e constante.',
+      whatIs:
+        'A Máquina de Neve produz flocos de espuma que imitam com perfeição a neve natural. Os flocos são leves, caem suavemente e criam uma atmosfera mágica de inverno, mesmo no calor brasileiro. É a solução perfeita para quem quer trazer o encanto da neve para seu evento.',
+      howItWorks:
+        'A máquina mistura ar com um fluido especial à base de sabão neutro, criando pequenas bolhas que se assemelham a flocos de neve. Um ventilador interno dispersa os flocos em uma área ampla, simulando uma nevasca suave e constante.',
       benefits: [
         'Líquido 100% atóxico e seguro para crianças',
         'Não mancha roupas nem danifica superfícies',
@@ -115,7 +134,8 @@ const equipment: EquipmentItem[] = [
         'Produções fotográficas e audiovisuais',
         'Festas infantis com tema Frozen',
       ],
-      technicalDetails: 'Nossas máquinas cobrem áreas de até 100m² e podem operar continuamente por horas. A neve evapora naturalmente em cerca de 15-20 minutos, facilitando a limpeza. Fornecemos fluido extra para eventos longos.',
+      technicalDetails:
+        'Nossas máquinas cobrem áreas de até 100m² e podem operar continuamente por horas. A neve evapora naturalmente em cerca de 15-20 minutos, facilitando a limpeza. Fornecemos fluido extra para eventos longos.',
       tips: 'Para fotos incríveis, combine a neve com iluminação azulada ou branca. Em festas infantis, as crianças adoram tentar "pegar" os flocos!',
     },
   },
@@ -129,8 +149,10 @@ const equipment: EquipmentItem[] = [
     specs: ['Produção contínua', 'Centenas de bolhas', 'Operação por horas', 'Ideal para crianças'],
     idealFor: 'Festas infantis, casamentos e eventos ao ar livre.',
     detailedInfo: {
-      whatIs: 'A Máquina de Bolhas profissional é um equipamento que produz centenas de bolhas de sabão por minuto de forma automática e contínua. Diferente das bolhas caseiras, essas são mais resistentes e criam um efeito visual encantador que fascina pessoas de todas as idades.',
-      howItWorks: 'O equipamento possui um conjunto de anéis rotativos que mergulham em uma solução especial de bolhas e, ao girar, são expostos a um fluxo de ar que forma e libera as bolhas. O resultado é uma produção constante e volumosa de bolhas brilhantes.',
+      whatIs:
+        'A Máquina de Bolhas profissional é um equipamento que produz centenas de bolhas de sabão por minuto de forma automática e contínua. Diferente das bolhas caseiras, essas são mais resistentes e criam um efeito visual encantador que fascina pessoas de todas as idades.',
+      howItWorks:
+        'O equipamento possui um conjunto de anéis rotativos que mergulham em uma solução especial de bolhas e, ao girar, são expostos a um fluxo de ar que forma e libera as bolhas. O resultado é uma produção constante e volumosa de bolhas brilhantes.',
       benefits: [
         'Produz bolhas por horas sem interrupção',
         'Bolhas mais resistentes que as caseiras',
@@ -144,7 +166,8 @@ const equipment: EquipmentItem[] = [
         'Eventos ao ar livre e jardins',
         'Sessões de fotos criativas',
       ],
-      technicalDetails: 'Trabalhamos com máquinas profissionais que produzem até 5.000 bolhas por minuto. O alcance é de aproximadamente 8 metros e podem operar por até 6 horas contínuas. Fornecemos líquido extra para eventos mais longos.',
+      technicalDetails:
+        'Trabalhamos com máquinas profissionais que produzem até 5.000 bolhas por minuto. O alcance é de aproximadamente 8 metros e podem operar por até 6 horas contínuas. Fornecemos líquido extra para eventos mais longos.',
       tips: 'As bolhas ficam ainda mais bonitas com iluminação colorida - elas refletem as cores e criam um efeito mágico! Para casamentos, posicione a máquina na saída da cerimônia.',
     },
   },
@@ -158,8 +181,10 @@ const equipment: EquipmentItem[] = [
     specs: ['Foco preciso', 'Alta luminosidade', 'Controle manual', 'Tripé incluso'],
     idealFor: 'Shows, teatro, TV e eventos corporativos.',
     detailedInfo: {
-      whatIs: 'O Canhão Seguidor é um refletor profissional de alta potência operado manualmente, usado para acompanhar e destacar pessoas ou elementos em movimento durante um evento. É o mesmo tipo de equipamento usado em shows de grandes artistas, produções de TV e teatro profissional.',
-      howItWorks: 'Um operador treinado controla o canhão em tempo real, direcionando o feixe de luz para acompanhar artistas, palestrantes ou momentos especiais. O equipamento possui controle de zoom, intensidade e filtros de cor, permitindo ajustes precisos durante o uso.',
+      whatIs:
+        'O Canhão Seguidor é um refletor profissional de alta potência operado manualmente, usado para acompanhar e destacar pessoas ou elementos em movimento durante um evento. É o mesmo tipo de equipamento usado em shows de grandes artistas, produções de TV e teatro profissional.',
+      howItWorks:
+        'Um operador treinado controla o canhão em tempo real, direcionando o feixe de luz para acompanhar artistas, palestrantes ou momentos especiais. O equipamento possui controle de zoom, intensidade e filtros de cor, permitindo ajustes precisos durante o uso.',
       benefits: [
         'Destaca protagonistas e momentos importantes',
         'Operação profissional em tempo real',
@@ -173,7 +198,8 @@ const equipment: EquipmentItem[] = [
         'Palestras e eventos corporativos',
         'Premiações e reconhecimentos',
       ],
-      technicalDetails: 'Nossos canhões seguidores possuem lâmpadas de 1200W a 2500W, com alcance de até 50 metros. O kit inclui tripé profissional, gelatinas coloridas e operador técnico especializado durante todo o evento.',
+      technicalDetails:
+        'Nossos canhões seguidores possuem lâmpadas de 1200W a 2500W, com alcance de até 50 metros. O kit inclui tripé profissional, gelatinas coloridas e operador técnico especializado durante todo o evento.',
       tips: 'O canhão seguidor transforma momentos simples em experiências cinematográficas. Use na entrada da debutante ou noivos para criar um momento inesquecível!',
     },
   },
@@ -187,8 +213,10 @@ const equipment: EquipmentItem[] = [
     specs: ['+10.000 músicas', 'Catálogo organizado', 'Controle remoto', 'Todos os estilos'],
     idealFor: 'Confraternizações, eventos empresariais e festas.',
     detailedInfo: {
-      whatIs: 'O Videokê Profissional é um sistema completo de karaokê com mais de 10.000 músicas em alta qualidade. Diferente de aplicativos de celular, oferece áudio cristalino, vídeos originais e um catálogo organizado que facilita encontrar qualquer música rapidamente.',
-      howItWorks: 'O sistema inclui uma central de reprodução conectada a uma TV ou projetor, onde aparecem a letra da música sincronizada com o vídeo. Os convidados escolhem as músicas através de um catálogo impresso ou digital e se revezam no microfone.',
+      whatIs:
+        'O Videokê Profissional é um sistema completo de karaokê com mais de 10.000 músicas em alta qualidade. Diferente de aplicativos de celular, oferece áudio cristalino, vídeos originais e um catálogo organizado que facilita encontrar qualquer música rapidamente.',
+      howItWorks:
+        'O sistema inclui uma central de reprodução conectada a uma TV ou projetor, onde aparecem a letra da música sincronizada com o vídeo. Os convidados escolhem as músicas através de um catálogo impresso ou digital e se revezam no microfone.',
       benefits: [
         'Repertório gigante com +10.000 músicas',
         'Qualidade de áudio profissional',
@@ -202,7 +230,8 @@ const equipment: EquipmentItem[] = [
         'Festas de família',
         'Eventos de integração',
       ],
-      technicalDetails: 'O kit completo inclui a central RAFT, 2 microfones sem fio profissionais, caixa de som amplificada e catálogo organizado por artista e estilo. Repertório atualizado com músicas de todos os gêneros: sertanejo, MPB, rock, pop internacional, forró e muito mais.',
+      technicalDetails:
+        'O kit completo inclui a central RAFT, 2 microfones sem fio profissionais, caixa de som amplificada e catálogo organizado por artista e estilo. Repertório atualizado com músicas de todos os gêneros: sertanejo, MPB, rock, pop internacional, forró e muito mais.',
       tips: 'Monte uma "playlist de aquecimento" com músicas conhecidas para quebrar o gelo inicial. Geralmente após as primeiras músicas, todos querem participar!',
     },
   },
@@ -343,7 +372,9 @@ export default function Equipment() {
                   <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-sm font-medium rounded-full mb-2">
                     {selectedEquipment.tagline}
                   </span>
-                  <h3 className="font-heading text-4xl md:text-5xl text-white">{selectedEquipment.name}</h3>
+                  <h3 className="font-heading text-4xl md:text-5xl text-white">
+                    {selectedEquipment.name}
+                  </h3>
                 </div>
               </div>
 
@@ -353,7 +384,9 @@ export default function Equipment() {
                 <div>
                   <div className="flex items-center gap-2 mb-3">
                     <Info className="w-5 h-5 text-primary" />
-                    <h4 className="font-heading text-xl text-white uppercase tracking-wider">O que é?</h4>
+                    <h4 className="font-heading text-xl text-white uppercase tracking-wider">
+                      O que é?
+                    </h4>
                   </div>
                   <p className="text-white/70 leading-relaxed">
                     {selectedEquipment.detailedInfo.whatIs}
@@ -364,7 +397,9 @@ export default function Equipment() {
                 <div>
                   <div className="flex items-center gap-2 mb-3">
                     <Clock className="w-5 h-5 text-primary" />
-                    <h4 className="font-heading text-xl text-white uppercase tracking-wider">Como funciona?</h4>
+                    <h4 className="font-heading text-xl text-white uppercase tracking-wider">
+                      Como funciona?
+                    </h4>
                   </div>
                   <p className="text-white/70 leading-relaxed">
                     {selectedEquipment.detailedInfo.howItWorks}
@@ -377,7 +412,9 @@ export default function Equipment() {
                   <div className="p-5 bg-white/5 rounded-2xl border border-white/10">
                     <div className="flex items-center gap-2 mb-4">
                       <Shield className="w-5 h-5 text-primary" />
-                      <h4 className="font-heading text-lg text-white uppercase tracking-wider">Benefícios</h4>
+                      <h4 className="font-heading text-lg text-white uppercase tracking-wider">
+                        Benefícios
+                      </h4>
                     </div>
                     <ul className="space-y-3">
                       {selectedEquipment.detailedInfo.benefits.map((benefit, idx) => (
@@ -393,7 +430,9 @@ export default function Equipment() {
                   <div className="p-5 bg-white/5 rounded-2xl border border-white/10">
                     <div className="flex items-center gap-2 mb-4">
                       <Users className="w-5 h-5 text-primary" />
-                      <h4 className="font-heading text-lg text-white uppercase tracking-wider">Quando usar?</h4>
+                      <h4 className="font-heading text-lg text-white uppercase tracking-wider">
+                        Quando usar?
+                      </h4>
                     </div>
                     <ul className="space-y-3">
                       {selectedEquipment.detailedInfo.useCases.map((useCase, idx) => (
@@ -440,7 +479,7 @@ export default function Equipment() {
 
                 {/* CTA Button */}
                 <a
-                  href={`https://wa.me/5561983033900?text=Olá! Gostaria de saber mais sobre o ${selectedEquipment.name} e solicitar um orçamento.`}
+                  href={buildWhatsAppUrl(WHATSAPP_MESSAGES.equipment(selectedEquipment.name))}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full btn-primary justify-center text-lg py-5"

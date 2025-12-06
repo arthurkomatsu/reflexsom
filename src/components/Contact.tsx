@@ -1,6 +1,13 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Phone, MapPin, Instagram, Clock, Send } from 'lucide-react';
+import {
+  buildWhatsAppUrl,
+  INSTAGRAM_URL,
+  INSTAGRAM_USERNAME,
+  WHATSAPP_PHONE_FORMATTED,
+  WHATSAPP_MESSAGES,
+} from '../constants';
 
 export default function Contact() {
   const { ref, inView } = useInView({
@@ -43,7 +50,7 @@ export default function Contact() {
           >
             {/* WhatsApp - Featured */}
             <a
-              href="https://wa.me/5561983033900?text=Olá! Gostaria de saber mais sobre os serviços da Reflex Som."
+              href={buildWhatsAppUrl(WHATSAPP_MESSAGES.default)}
               target="_blank"
               rel="noopener noreferrer"
               className="block card-glass p-6 group hover:border-primary/30 transition-all duration-300"
@@ -54,7 +61,7 @@ export default function Contact() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-heading text-xl text-white mb-1">WhatsApp</h3>
-                  <p className="text-white/70 font-semibold text-lg">(61) 98303-3900</p>
+                  <p className="text-white/70 font-semibold text-lg">{WHATSAPP_PHONE_FORMATTED}</p>
                   <p className="text-white/50 text-sm mt-2">Clique para iniciar uma conversa</p>
                 </div>
                 <Send className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
@@ -63,7 +70,7 @@ export default function Contact() {
 
             {/* Instagram */}
             <a
-              href="https://www.instagram.com/reflex_som"
+              href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="block card-glass p-6 group hover:border-pink-500/30 transition-all duration-300"
@@ -74,7 +81,7 @@ export default function Contact() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-heading text-xl text-white mb-1">Instagram</h3>
-                  <p className="text-pink-400 font-semibold">@reflex_som</p>
+                  <p className="text-pink-400 font-semibold">@{INSTAGRAM_USERNAME}</p>
                   <p className="text-white/50 text-sm mt-2">Siga-nos para novidades e bastidores</p>
                 </div>
                 <Send className="w-5 h-5 text-pink-500 group-hover:translate-x-1 transition-transform" />

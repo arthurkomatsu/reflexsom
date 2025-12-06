@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Volume2, Lightbulb, Music, Tv, Sparkles, Mic } from 'lucide-react';
+import { buildWhatsAppUrl, WHATSAPP_MESSAGES } from '../constants';
 
 const services = [
   {
@@ -119,7 +120,7 @@ export default function Services() {
           className="text-center mt-12"
         >
           <a
-            href="https://wa.me/5561983033900?text=Olá! Gostaria de saber mais sobre os serviços da Reflex Som."
+            href={buildWhatsAppUrl(WHATSAPP_MESSAGES.default)}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary"

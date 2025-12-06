@@ -2,8 +2,7 @@ import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Instagram, ExternalLink } from 'lucide-react';
-
-const INSTAGRAM_USERNAME = 'reflex_som';
+import { INSTAGRAM_USERNAME, INSTAGRAM_URL } from '../constants';
 
 // Calculate iframe height based on screen width
 function getIframeHeight(width: number): number {
@@ -69,14 +68,14 @@ export default function Gallery() {
             <div className="relative w-full bg-dark">
               <iframe
                 src={`https://www.instagram.com/${INSTAGRAM_USERNAME}/embed`}
-                className="w-full border-0"
+                className="w-full border-0 overflow-hidden"
                 style={{
                   height: `${iframeHeight}px`,
                   background: '#0a0a0a',
                   colorScheme: 'dark',
                 }}
-                scrolling="no"
-                title="Instagram Feed"
+                title="Feed do Instagram da Reflex Som"
+                loading="lazy"
               />
             </div>
           </div>
@@ -90,7 +89,7 @@ export default function Gallery() {
           className="text-center mt-12"
         >
           <a
-            href={`https://www.instagram.com/${INSTAGRAM_USERNAME}`}
+            href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-purple-600 via-pink-500 to-orange-400 rounded-full text-white font-semibold hover:opacity-90 transition-opacity group"

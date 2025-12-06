@@ -5,32 +5,41 @@ import Services from './components/Services';
 import Equipment from './components/Equipment';
 import Gallery from './components/Gallery';
 import Testimonials from './components/Testimonials';
+import FAQ from './components/FAQ';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
+import SkipToContent from './components/SkipToContent';
+import ErrorBoundary from './components/ErrorBoundary';
 
 function App() {
   return (
-    <div className="relative">
-      {/* Subtle noise texture overlay */}
-      <div className="noise-overlay" />
+    <ErrorBoundary>
+      <div className="relative">
+        {/* Skip to content for accessibility */}
+        <SkipToContent />
 
-      {/* Main content */}
-      <Navbar />
-      <main>
-        <Hero />
-        <About />
-        <Services />
-        <Equipment />
-        <Gallery />
-        <Testimonials />
-        <Contact />
-      </main>
-      <Footer />
+        {/* Subtle noise texture overlay */}
+        <div className="noise-overlay" />
 
-      {/* Floating WhatsApp Button */}
-      <WhatsAppButton />
-    </div>
+        {/* Main content */}
+        <Navbar />
+        <main id="main-content">
+          <Hero />
+          <About />
+          <Services />
+          <Equipment />
+          <Gallery />
+          <Testimonials />
+          <FAQ />
+          <Contact />
+        </main>
+        <Footer />
+
+        {/* Floating WhatsApp Button */}
+        <WhatsAppButton />
+      </div>
+    </ErrorBoundary>
   );
 }
 

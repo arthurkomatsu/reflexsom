@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Instagram, ExternalLink } from 'lucide-react';
 import { INSTAGRAM_USERNAME, INSTAGRAM_URL } from '../constants';
+import InstagramSkeleton from './InstagramSkeleton';
 
 // Calculate iframe height based on screen width
 function getIframeHeight(width: number): number {
@@ -15,6 +16,7 @@ function getIframeHeight(width: number): number {
 
 export default function Gallery() {
   const [iframeHeight, setIframeHeight] = useState(750);
+  const [isLoading, setIsLoading] = useState(true);
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -64,8 +66,11 @@ export default function Gallery() {
           className="flex justify-center"
         >
           <div className="w-full max-w-4xl rounded-2xl overflow-hidden">
+            {/* Loading skeleton */}
+            {isLoading && <InstagramSkeleton height={iframeHeight} />}
+
             {/* Instagram Feed Iframe */}
-            <div className="relative w-full bg-dark">
+            <div className={`relative w-full bg-dark ${isLoading ? 'absolute opacity-0' : ''}`}>
               <iframe
                 src={`https://www.instagram.com/${INSTAGRAM_USERNAME}/embed`}
                 className="w-full border-0 overflow-hidden"
@@ -76,6 +81,7 @@ export default function Gallery() {
                 }}
                 title="Feed do Instagram da Reflex Som"
                 loading="lazy"
+                onLoad={() => setIsLoading(false)}
               />
             </div>
           </div>

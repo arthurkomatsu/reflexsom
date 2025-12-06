@@ -1,10 +1,11 @@
-// Contact information (internal)
-const WHATSAPP_PHONE = '5561983033900';
+// Contact information (from environment variables with fallbacks)
+const WHATSAPP_PHONE = import.meta.env.VITE_WHATSAPP_PHONE || '5561983033900';
 
 // Public constants
 export const WHATSAPP_PHONE_FORMATTED = '(61) 98303-3900';
-export const INSTAGRAM_USERNAME = 'reflex_som';
+export const INSTAGRAM_USERNAME = import.meta.env.VITE_INSTAGRAM_USERNAME || 'reflex_som';
 export const INSTAGRAM_URL = `https://www.instagram.com/${INSTAGRAM_USERNAME}`;
+export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID || '';
 
 // Default WhatsApp messages
 export const WHATSAPP_MESSAGES = {

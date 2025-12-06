@@ -1,7 +1,16 @@
 {
   "$schema": "https://unpkg.com/knip@latest/schema.json",
-  "entry": ["src/main.tsx"],
+  "entry": ["src/main.tsx", "vitest.config.ts"],
   "project": ["src/**/*.{ts,tsx}"],
-  "ignore": ["src/vite-env.d.ts"],
-  "ignoreDependencies": ["@lhci/cli"]
+  "ignore": [
+    "src/vite-env.d.ts",
+    "src/**/*.test.{ts,tsx}",
+    "src/**/*.spec.{ts,tsx}",
+    "src/test/**",
+    "src/components/NotFound.tsx",
+    "src/utils/analytics.ts",
+    "src/utils/serviceWorker.ts"
+  ],
+  "ignoreDependencies": ["@lhci/cli", "@vitest/coverage-v8"],
+  "ignoreExportsUsedInFile": true
 }

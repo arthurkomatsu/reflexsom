@@ -289,6 +289,7 @@ export default function Equipment() {
                   src={item.image}
                   alt={item.name}
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
@@ -366,6 +367,7 @@ export default function Equipment() {
                   src={selectedEquipment.image}
                   alt={selectedEquipment.name}
                   className="w-full h-full object-cover"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-100 via-dark-100/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">

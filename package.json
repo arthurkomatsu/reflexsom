@@ -18,7 +18,10 @@
     "knip:fix": "knip --fix",
     "validate": "npm run format:check && npm run lint && npm run typecheck && npm run knip",
     "preview": "vite preview",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -39,6 +42,8 @@
   "devDependencies": {
     "@eslint/js": "^9.13.0",
     "@lhci/cli": "^0.15.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.0.1",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.3",
@@ -48,6 +53,7 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.11.0",
     "husky": "^9.1.7",
+    "jsdom": "^25.0.1",
     "knip": "^5.71.0",
     "lint-staged": "^15.5.2",
     "postcss": "^8.4.47",
@@ -55,6 +61,7 @@
     "tailwindcss": "^3.4.14",
     "typescript": "~5.6.2",
     "typescript-eslint": "^8.11.0",
-    "vite": "^5.4.10"
+    "vite": "^5.4.10",
+    "vitest": "^2.1.5"
   }
 }

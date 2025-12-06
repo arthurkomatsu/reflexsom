@@ -1,8 +1,9 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Phone, Instagram } from 'lucide-react';
 import { buildWhatsAppUrl, INSTAGRAM_URL, WHATSAPP_MESSAGES } from '../constants';
 import { handleNavClick } from '../utils/scroll';
+import { useScrollPosition } from '../hooks/useScrollPosition';
 import WhatsAppIcon from './icons/WhatsAppIcon';
 
 const navItems = [
@@ -12,21 +13,13 @@ const navItems = [
   { label: 'Equipamentos', href: '#equipamentos' },
   { label: 'Portfólio', href: '#galeria' },
   { label: 'Depoimentos', href: '#depoimentos' },
+  { label: 'FAQ', href: '#faq' },
   { label: 'Contato', href: '#contato' },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const { isScrolled } = useScrollPosition(50);
 
   const onNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     handleNavClick(e, href, () => setIsOpen(false));
@@ -55,6 +48,7 @@ export default function Navbar() {
               src="/assets/logo-reflex-som.jpg"
               alt="Reflex Som"
               className="h-12 w-auto rounded"
+              loading="eager"
             />
           </motion.a>
 

@@ -19,6 +19,10 @@ export default function Gallery() {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
   const [retryCount, setRetryCount] = useState(0);
+  const [autoRetryCount, setAutoRetryCount] = useState(0);
+
+  const MAX_AUTO_RETRIES = 3;
+  const AUTO_RETRY_DELAY = 2000; // 2 seconds between auto retries
 
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -38,33 +42,49 @@ export default function Gallery() {
     return () => window.removeEventListener('resize', updateHeight);
   }, []);
 
-  // Timeout for loading - if it takes too long, show error
+  // Timeout for loading - if it takes too long, trigger retry or show error
   useEffect(() => {
     if (isLoading && !hasError) {
       const timeout = setTimeout(() => {
         if (isLoading) {
-          setHasError(true);
-          setIsLoading(false);
+          // Auto retry if we haven't exceeded max retries
+          if (autoRetryCount < MAX_AUTO_RETRIES) {
+            setAutoRetryCount((prev) => prev + 1);
+            setRetryCount((prev) => prev + 1);
+          } else {
+            setHasError(true);
+            setIsLoading(false);
+          }
         }
       }, 15000); // 15 second timeout
       return () => clearTimeout(timeout);
     }
-  }, [isLoading, hasError, retryCount]);
+  }, [isLoading, hasError, retryCount, autoRetryCount]);
 
   const handleRetry = () => {
     setHasError(false);
     setIsLoading(true);
     setRetryCount((prev) => prev + 1);
+    setAutoRetryCount(0); // Reset auto retry count on manual retry
   };
 
   const handleLoad = () => {
     setIsLoading(false);
     setHasError(false);
+    setAutoRetryCount(0); // Reset on successful load
   };
 
   const handleError = () => {
-    setHasError(true);
-    setIsLoading(false);
+    // Auto retry if we haven't exceeded max retries
+    if (autoRetryCount < MAX_AUTO_RETRIES) {
+      setTimeout(() => {
+        setAutoRetryCount((prev) => prev + 1);
+        setRetryCount((prev) => prev + 1);
+      }, AUTO_RETRY_DELAY);
+    } else {
+      setHasError(true);
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -139,16 +159,20 @@ export default function Gallery() {
 
             {/* Instagram Feed Iframe */}
             {!hasError && (
-              <div className={`relative w-full bg-dark ${isLoading ? 'absolute opacity-0' : ''}`}>
+              <div
+                className={`relative w-full bg-dark overflow-hidden ${isLoading ? 'absolute opacity-0' : ''}`}
+              >
                 <iframe
                   key={retryCount}
                   src={`https://www.instagram.com/${INSTAGRAM_USERNAME}/embed`}
-                  className="w-full border-0 overflow-hidden"
+                  className="w-full border-0"
                   style={{
                     height: `${iframeHeight}px`,
                     background: '#0a0a0a',
                     colorScheme: 'dark',
+                    overflow: 'hidden',
                   }}
+                  scrolling="no"
                   title="Feed do Instagram da Reflex Som"
                   aria-label={`Visualizar feed do Instagram @${INSTAGRAM_USERNAME}`}
                   loading="lazy"

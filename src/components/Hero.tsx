@@ -17,12 +17,13 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center overflow-hidden hero-bg"
     >
       {/* Background Image with Overlay */}
-      <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url('/assets/hero-bg.png')`,
-        }}
-      >
+      <div className="absolute inset-0">
+        <img
+          src="/assets/hero-bg.png"
+          alt="Background Studio"
+          className="w-full h-full object-cover"
+          fetchPriority="high"
+        />
         <div className="absolute inset-0 bg-gradient-to-b from-dark/70 via-dark/80 to-dark" />
       </div>
 

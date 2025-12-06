@@ -53,6 +53,12 @@ coverage/
 .DS_Store
 Thumbs.db
 
+# Lighthouse CI
+.lighthouseci/
+
+# Sentry
+.sentryclirc
+
 # Misc
 *.log
 .cache/

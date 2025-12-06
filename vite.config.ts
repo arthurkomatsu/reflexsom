@@ -28,6 +28,7 @@ export default defineConfig({
   server: {
     host: true, // Listen on all local IPs
     port: 8000,
+    allowedHosts: ['eshmg-back.c-iot.io'],
   },
   preview: {
     host: true, // Listen on all local IPs

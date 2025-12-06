@@ -11,10 +11,14 @@ interface LazyImageProps {
   priority?: boolean;
   fallbackSrc?: string;
   webpSrc?: string;
+  avifSrc?: string;
+  srcSet?: string;
+  sizes?: string;
 }
 
 /**
  * LazyImage component with loading state, fade-in animation, and fallback support
+ * Supports AVIF, WebP formats with automatic fallback
  */
 export default function LazyImage({
   src,
@@ -25,6 +29,9 @@ export default function LazyImage({
   priority = false,
   fallbackSrc = '/assets/placeholder.svg',
   webpSrc,
+  avifSrc,
+  srcSet,
+  sizes = '(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw',
 }: LazyImageProps) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -92,18 +99,25 @@ export default function LazyImage({
         </div>
       )}
 
-      {/* Actual image with WebP support */}
+      {/* Actual image with AVIF/WebP support and responsive images */}
       {isInView &&
         !hasError &&
-        (webpSrc ? (
+        (avifSrc || webpSrc ? (
           <picture>
-            <source srcSet={webpSrc} type="image/webp" />
+            {/* AVIF - best compression for modern browsers */}
+            {avifSrc && <source srcSet={avifSrc} type="image/avif" />}
+            {/* WebP - good compression for most browsers */}
+            {webpSrc && <source srcSet={webpSrc} type="image/webp" />}
             <motion.img
               src={imageSrc}
               alt={alt}
               width={width}
               height={height}
+              srcSet={srcSet}
+              sizes={sizes}
               loading={priority ? 'eager' : 'lazy'}
+              decoding={priority ? 'sync' : 'async'}
+              fetchPriority={priority ? 'high' : 'auto'}
               onLoad={handleLoad}
               onError={handleError}
               initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}
@@ -118,7 +132,11 @@ export default function LazyImage({
             alt={alt}
             width={width}
             height={height}
+            srcSet={srcSet}
+            sizes={sizes}
             loading={priority ? 'eager' : 'lazy'}
+            decoding={priority ? 'sync' : 'async'}
+            fetchPriority={priority ? 'high' : 'auto'}
             onLoad={handleLoad}
             onError={handleError}
             initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0 }}

@@ -13,6 +13,7 @@
     "src/utils/analytics.ts",
     "src/utils/serviceWorker.ts",
     "src/utils/errorTracking.ts",
+    "src/utils/image.ts",
     "src/types/index.ts",
     "e2e/**"
   ],

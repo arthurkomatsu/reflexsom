@@ -1,4 +1,5 @@
 import { lazy, Suspense } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -11,6 +12,7 @@ import SkipToContent from './components/SkipToContent';
 import ErrorBoundary from './components/ErrorBoundary';
 import PageTransition from './components/PageTransition';
 import PageLoadingBar from './components/PageLoadingBar';
+import NotFound from './components/NotFound';
 
 // Lazy load heavy components
 const Equipment = lazy(() => import('./components/Equipment'));
@@ -38,6 +40,32 @@ function SectionSkeleton() {
   );
 }
 
+// Home page component with all sections
+function HomePage() {
+  return (
+    <>
+      <Hero />
+      <About />
+      <Services />
+      <Suspense fallback={<SectionSkeleton />}>
+        <Equipment />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Gallery />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Testimonials />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <FAQ />
+      </Suspense>
+      <Suspense fallback={<SectionSkeleton />}>
+        <Contact />
+      </Suspense>
+    </>
+  );
+}
+
 function App() {
   return (
     <ErrorBoundary>
@@ -56,24 +84,14 @@ function App() {
             {/* Main content */}
             <Navbar />
             <main id="main-content">
-              <Hero />
-              <About />
-              <Services />
-              <Suspense fallback={<SectionSkeleton />}>
-                <Equipment />
-              </Suspense>
-              <Suspense fallback={<SectionSkeleton />}>
-                <Gallery />
-              </Suspense>
-              <Suspense fallback={<SectionSkeleton />}>
-                <Testimonials />
-              </Suspense>
-              <Suspense fallback={<SectionSkeleton />}>
-                <FAQ />
-              </Suspense>
-              <Suspense fallback={<SectionSkeleton />}>
-                <Contact />
-              </Suspense>
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                {/* Future routes can be added here:
+                    <Route path="/equipamentos/:id" element={<EquipmentDetail />} />
+                    <Route path="/blog" element={<Blog />} />
+                */}
+                <Route path="*" element={<NotFound />} />
+              </Routes>
             </main>
             <Footer />
 

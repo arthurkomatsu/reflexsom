@@ -25,6 +25,14 @@ export default defineConfig({
       '@': path.resolve(__dirname, './src'),
     },
   },
+  server: {
+    host: true, // Listen on all local IPs
+    port: 8000,
+  },
+  preview: {
+    host: true, // Listen on all local IPs
+    port: 8000,
+  },
   build: {
     rollupOptions: {
       output: {
@@ -54,8 +62,5 @@ export default defineConfig({
   // Optimize dependencies
   optimizeDeps: {
     include: ['react', 'react-dom', 'framer-motion', 'lucide-react'],
-  },
-  server: {
-    host: true,
   },
 });

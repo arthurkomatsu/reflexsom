@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { ChevronDown, Sparkles, Zap } from 'lucide-react';
+import { ChevronDown, Zap } from 'lucide-react';
 import { buildWhatsAppUrl, WHATSAPP_MESSAGES, COMPANY } from '../constants';
 import { scrollToSection } from '../utils/scroll';
 import { useReducedMotion } from '../hooks/useReducedMotion';
@@ -7,14 +7,10 @@ import { useReducedMotion } from '../hooks/useReducedMotion';
 export default function Hero() {
   const prefersReducedMotion = useReducedMotion();
 
-  // Animation settings based on reduced motion preference
-  const animationDuration = prefersReducedMotion ? 0 : 0.6;
-  const initialY = prefersReducedMotion ? 0 : 20;
-
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex items-center justify-center overflow-hidden hero-bg"
+      className="relative min-h-screen min-h-[100dvh] flex items-center justify-center overflow-hidden hero-bg"
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
@@ -60,17 +56,6 @@ export default function Hero() {
 
       {/* Main Content */}
       <div className="relative section-container text-center z-10">
-        {/* Badge */}
-        <motion.div
-          initial={{ opacity: prefersReducedMotion ? 1 : 0, y: initialY }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: animationDuration }}
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-white mb-8"
-        >
-          <Sparkles className="w-4 h-4" />
-          <span className="text-sm font-medium">+30 anos criando momentos inesquecíveis</span>
-        </motion.div>
-
         {/* Main Heading */}
         <motion.h1
           initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 30 }}
@@ -79,7 +64,7 @@ export default function Hero() {
             duration: prefersReducedMotion ? 0 : 0.8,
             delay: prefersReducedMotion ? 0 : 0.2,
           }}
-          className="heading-xl text-white mb-6"
+          className="heading-xl text-white mb-4 md:mb-6"
         >
           <span className="block">Transforme seu</span>
           <span className="text-gradient">Evento</span>
@@ -90,7 +75,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-10 text-balance"
+          className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-6 md:mb-10 text-balance"
         >
           Iluminação profissional, som, efeitos especiais, DJ e locação de equipamentos para
           transformar seu evento em uma experiência inesquecível. Atendemos{' '}
@@ -102,7 +87,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5 }}
-          className="flex flex-wrap justify-center gap-8 md:gap-16 mb-12"
+          className="flex flex-wrap justify-center gap-6 md:gap-16 mb-8 md:mb-12"
         >
           {[
             {
@@ -155,7 +140,7 @@ export default function Hero() {
 
       {/* Scroll Indicator */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 cursor-pointer"
+        className="absolute bottom-12 md:bottom-8 left-1/2 -translate-x-1/2 cursor-pointer"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}

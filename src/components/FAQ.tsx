@@ -21,7 +21,7 @@ const faqs = [
     id: 3,
     question: 'A instalação está inclusa no serviço?',
     answer:
-      'Sim! Todos os nossos serviços incluem montagem, instalação, operação durante o evento e desmontagem. Nossa equipe técnica cuida de tudo para você.',
+      'Oferecemos o serviço completo de montagem, instalação e operação mediante uma taxa, mas o cliente também tem a opção de realizar a instalação por conta própria para reduzir custos.',
   },
   {
     id: 4,

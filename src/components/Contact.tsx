@@ -73,18 +73,18 @@ export default function Contact() {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="block card-glass p-6 group hover:border-pink-500/30 transition-all duration-300"
+              className="block card-glass p-6 group hover:border-primary/30 transition-all duration-300"
             >
               <div className="flex items-start gap-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center group-hover:from-purple-500/30 group-hover:to-pink-500/30 transition-colors">
-                  <Instagram className="w-7 h-7 text-pink-500" />
+                <div className="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center group-hover:bg-primary/30 transition-colors">
+                  <Instagram className="w-7 h-7 text-primary" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-heading text-xl text-white mb-1">Instagram</h3>
-                  <p className="text-pink-400 font-semibold">@{INSTAGRAM_USERNAME}</p>
+                  <p className="text-white/70 font-semibold text-lg">@{INSTAGRAM_USERNAME}</p>
                   <p className="text-white/50 text-sm mt-2">Siga-nos para novidades e bastidores</p>
                 </div>
-                <Send className="w-5 h-5 text-pink-500 group-hover:translate-x-1 transition-transform" />
+                <Send className="w-5 h-5 text-primary group-hover:translate-x-1 transition-transform" />
               </div>
             </a>
 

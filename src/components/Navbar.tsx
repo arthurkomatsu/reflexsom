@@ -22,6 +22,39 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('#inicio');
   const { isScrolled } = useScrollPosition(50);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
+  // Handle navbar visibility on scroll
+  useEffect(() => {
+    const controlNavbar = () => {
+      const currentScrollY = window.scrollY;
+      const isMobile = window.innerWidth < 768; // md breakpoint
+
+      if (!isMobile) {
+        setIsVisible(true);
+        lastScrollY.current = currentScrollY;
+        return;
+      }
+
+      // Show navbar if scrolling up or at the top
+      // Hide if scrolling down and past 100px
+      if (currentScrollY < lastScrollY.current || currentScrollY < 100) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setIsVisible(false);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', controlNavbar, { passive: true });
+    window.addEventListener('resize', controlNavbar);
+    return () => {
+      window.removeEventListener('scroll', controlNavbar);
+      window.removeEventListener('resize', controlNavbar);
+    };
+  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -73,8 +106,8 @@ export default function Navbar() {
     <>
       <motion.header
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6 }}
+        animate={{ y: isVisible || isOpen ? 0 : -100 }}
+        transition={{ duration: 0.3 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled || isOpen
             ? 'bg-dark/95 backdrop-blur-lg shadow-lg shadow-black/20'

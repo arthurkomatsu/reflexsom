@@ -17,9 +17,9 @@ test.describe('Contact and WhatsApp', () => {
     // Navigate to contact section
     await page.locator('#contato').scrollIntoViewIfNeeded();
 
-    // Check contact info is visible
-    await expect(page.getByText('(61) 98303-3900')).toBeVisible();
-    await expect(page.getByText('Brasília - DF')).toBeVisible();
+    // Check contact info is visible (use first() to avoid strict mode violation)
+    await expect(page.getByText('(61) 98303-3900').first()).toBeVisible();
+    await expect(page.getByText('Brasília - DF').first()).toBeVisible();
   });
 
   test('should have Instagram link', async ({ page }) => {

@@ -7,12 +7,12 @@ test.describe('Homepage', () => {
 
   test('should display the hero section', async ({ page }) => {
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-    await expect(page.getByText('Reflex Som')).toBeVisible();
+    await expect(page.getByText('Reflex Som', { exact: true })).toBeVisible();
   });
 
   test('should have a working navigation', async ({ page }) => {
-    // Check navbar is visible
-    await expect(page.getByRole('navigation')).toBeVisible();
+    // Check navbar is visible (use first() since there are multiple nav elements)
+    await expect(page.getByRole('navigation').first()).toBeVisible();
 
     // Click on Sobre link
     await page.getByRole('link', { name: 'Sobre' }).first().click();
@@ -48,7 +48,8 @@ test.describe('Homepage', () => {
   });
 
   test('should have WhatsApp floating button', async ({ page }) => {
-    const whatsappButton = page.getByRole('link', { name: /whatsapp/i });
+    // Target the floating WhatsApp button specifically by its unique aria-label
+    const whatsappButton = page.getByRole('link', { name: 'Entrar em contato pelo WhatsApp' });
     await expect(whatsappButton).toBeVisible();
     await expect(whatsappButton).toHaveAttribute('href', /wa\.me/);
   });

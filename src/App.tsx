@@ -72,6 +72,11 @@ function App() {
       {/* Page loading progress bar */}
       <PageLoadingBar />
 
+      {/* Fixed elements - outside PageTransition to prevent transform issues */}
+      <Navbar />
+      <WhatsAppButton />
+      <BackToTop />
+
       <AnimatePresence mode="wait">
         <PageTransition>
           <div className="relative">
@@ -82,7 +87,6 @@ function App() {
             <div className="noise-overlay" />
 
             {/* Main content */}
-            <Navbar />
             <main id="main-content">
               <Routes>
                 <Route path="/" element={<HomePage />} />
@@ -94,10 +98,6 @@ function App() {
               </Routes>
             </main>
             <Footer />
-
-            {/* Floating Buttons */}
-            <WhatsAppButton />
-            <BackToTop />
           </div>
         </PageTransition>
       </AnimatePresence>

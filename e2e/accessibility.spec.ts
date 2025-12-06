@@ -6,7 +6,7 @@ test.describe('Accessibility', () => {
     await page.goto('/');
 
     // Wait for the page to fully load
-    await page.waitForLoadState('networkidle');
+    await page.waitForLoadState('domcontentloaded');
 
     const accessibilityScanResults = await new AxeBuilder({ page })
       .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa'])

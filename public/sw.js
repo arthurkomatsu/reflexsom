@@ -11,7 +11,7 @@ const STATIC_ASSETS = [
   '/offline.html',
   '/manifest.json',
   '/assets/logo-reflex-som.jpg',
-  '/assets/hero-bg.png',
+  '/assets/hero-bg.jpg',
 ];
 
 // Assets that should use stale-while-revalidate strategy

@@ -112,7 +112,7 @@ const equipment: EquipmentItem[] = [
     id: 'neve',
     name: 'Máquina de Neve',
     tagline: 'Neve artificial realista',
-    image: '/assets/maquina-neve-01.jpg',
+    image: '/assets/maquina-neve.jpg',
     description:
       'Efeito extremamente semelhante à neve natural. Líquido totalmente atóxico que pode ficar em contato com a pele.',
     specs: ['Neve realista', 'Líquido atóxico', 'Cobertura ampla', 'Fácil limpeza'],

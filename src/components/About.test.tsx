@@ -48,7 +48,7 @@ describe('About', () => {
 
   it('renders the main image with alt text', () => {
     render(<About />);
-    const image = screen.getByAltText('Evento da Embaixada da Holanda');
+    const image = screen.getByAltText('Evento');
     expect(image).toBeInTheDocument();
   });
 });

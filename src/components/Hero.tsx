@@ -19,7 +19,7 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <img
-          src="/assets/hero-bg.png"
+          src="/assets/hero-bg.jpg"
           alt="Background Studio"
           className="w-full h-full object-cover"
           fetchPriority="high"

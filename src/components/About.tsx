@@ -53,8 +53,8 @@ export default function About() {
               {/* Main image */}
               <div className="absolute inset-4 rounded-3xl overflow-hidden card-glass">
                 <img
-                  src="/assets/evento-embaixada-holanda.jpg"
-                  alt="Evento da Embaixada da Holanda"
+                  src="/assets/evento.jpg"
+                  alt="Evento"
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />

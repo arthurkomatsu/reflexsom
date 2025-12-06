@@ -40,7 +40,9 @@ describe('Navbar', () => {
 
   it('renders the navbar', () => {
     render(<Navbar />);
-    expect(screen.getByRole('navigation')).toBeInTheDocument();
+    // There are two navigation elements - nav tag and the desktop navigation div
+    const navElements = screen.getAllByRole('navigation');
+    expect(navElements.length).toBeGreaterThan(0);
   });
 
   it('renders the logo', () => {

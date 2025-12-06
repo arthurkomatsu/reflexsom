@@ -8,6 +8,7 @@ const DYNAMIC_CACHE = 'reflex-som-dynamic-v2';
 const STATIC_ASSETS = [
   '/',
   '/index.html',
+  '/offline.html',
   '/manifest.json',
   '/assets/logo-reflex-som.jpg',
   '/assets/hero-bg.png',
@@ -113,6 +114,10 @@ async function networkFirst(request) {
     }
     // Return offline page for navigation requests
     if (request.mode === 'navigate') {
+      const offlinePage = await caches.match('/offline.html');
+      if (offlinePage) {
+        return offlinePage;
+      }
       return caches.match('/');
     }
     return new Response('Offline', { 

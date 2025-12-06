@@ -2,8 +2,15 @@ import { motion } from 'framer-motion';
 import { ChevronDown, Sparkles, Zap } from 'lucide-react';
 import { buildWhatsAppUrl, WHATSAPP_MESSAGES, COMPANY } from '../constants';
 import { scrollToSection } from '../utils/scroll';
+import { useReducedMotion } from '../hooks/useReducedMotion';
 
 export default function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+
+  // Animation settings based on reduced motion preference
+  const animationDuration = prefersReducedMotion ? 0 : 0.6;
+  const initialY = prefersReducedMotion ? 0 : 20;
+
   return (
     <section
       id="inicio"
@@ -19,42 +26,44 @@ export default function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-dark/70 via-dark/80 to-dark" />
       </div>
 
-      {/* Animated Light Beams */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-primary/20 via-primary/10 to-transparent"
-          animate={{
-            opacity: [0.3, 0.6, 0.3],
-            x: [-50, 50, -50],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: 'easeInOut',
-          }}
-        />
-        <motion.div
-          className="absolute top-0 right-1/4 w-1 h-full bg-gradient-to-b from-primary/20 via-primary/10 to-transparent"
-          animate={{
-            opacity: [0.4, 0.7, 0.4],
-            x: [50, -50, 50],
-          }}
-          transition={{
-            duration: 6,
-            repeat: Infinity,
-            ease: 'easeInOut',
-            delay: 1,
-          }}
-        />
-      </div>
+      {/* Animated Light Beams - only show if motion is allowed */}
+      {!prefersReducedMotion && (
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-0 left-1/4 w-1 h-full bg-gradient-to-b from-primary/20 via-primary/10 to-transparent"
+            animate={{
+              opacity: [0.3, 0.6, 0.3],
+              x: [-50, 50, -50],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            }}
+          />
+          <motion.div
+            className="absolute top-0 right-1/4 w-1 h-full bg-gradient-to-b from-primary/20 via-primary/10 to-transparent"
+            animate={{
+              opacity: [0.4, 0.7, 0.4],
+              x: [50, -50, 50],
+            }}
+            transition={{
+              duration: 6,
+              repeat: Infinity,
+              ease: 'easeInOut',
+              delay: 1,
+            }}
+          />
+        </div>
+      )}
 
       {/* Main Content */}
       <div className="relative section-container text-center z-10">
         {/* Badge */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: prefersReducedMotion ? 1 : 0, y: initialY }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: animationDuration }}
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/20 border border-primary/30 text-white mb-8"
         >
           <Sparkles className="w-4 h-4" />
@@ -63,9 +72,12 @@ export default function Hero() {
 
         {/* Main Heading */}
         <motion.h1
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: prefersReducedMotion ? 1 : 0, y: prefersReducedMotion ? 0 : 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          transition={{
+            duration: prefersReducedMotion ? 0 : 0.8,
+            delay: prefersReducedMotion ? 0 : 0.2,
+          }}
           className="heading-xl text-white mb-6"
         >
           <span className="block">Transforme seu</span>

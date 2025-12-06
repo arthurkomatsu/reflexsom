@@ -4,7 +4,11 @@ import './index.css';
 import App from './App';
 import { registerServiceWorker } from './utils/serviceWorker';
 import { initGA } from './utils/analytics';
+import { initErrorTracking } from './utils/errorTracking';
 import { GA_MEASUREMENT_ID } from './constants';
+
+// Initialize error tracking first (to catch any initialization errors)
+initErrorTracking();
 
 // Initialize Google Analytics
 if (GA_MEASUREMENT_ID) {

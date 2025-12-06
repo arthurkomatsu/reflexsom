@@ -10,6 +10,7 @@ import BackToTop from './components/BackToTop';
 import SkipToContent from './components/SkipToContent';
 import ErrorBoundary from './components/ErrorBoundary';
 import PageTransition from './components/PageTransition';
+import PageLoadingBar from './components/PageLoadingBar';
 
 // Lazy load heavy components
 const Equipment = lazy(() => import('./components/Equipment'));
@@ -40,6 +41,9 @@ function SectionSkeleton() {
 function App() {
   return (
     <ErrorBoundary>
+      {/* Page loading progress bar */}
+      <PageLoadingBar />
+
       <AnimatePresence mode="wait">
         <PageTransition>
           <div className="relative">

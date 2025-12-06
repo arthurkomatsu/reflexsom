@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { ChevronDown, HelpCircle } from 'lucide-react';
@@ -111,6 +111,42 @@ export default function FAQ() {
   const handleToggle = (id: number) => {
     setOpenId(openId === id ? null : id);
   };
+
+  // Add FAQ structured data for SEO
+  useEffect(() => {
+    const faqSchema = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    };
+
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.id = 'faq-schema';
+    script.textContent = JSON.stringify(faqSchema);
+
+    // Remove existing FAQ schema if present
+    const existingScript = document.getElementById('faq-schema');
+    if (existingScript) {
+      existingScript.remove();
+    }
+
+    document.head.appendChild(script);
+
+    return () => {
+      const scriptToRemove = document.getElementById('faq-schema');
+      if (scriptToRemove) {
+        scriptToRemove.remove();
+      }
+    };
+  }, []);
 
   return (
     <section id="faq" className="section-padding relative">

@@ -1,5 +1,6 @@
 import { Component, ErrorInfo, ReactNode } from 'react';
 import { AlertTriangle, RefreshCw } from 'lucide-react';
+import { captureError } from '../utils/errorTracking';
 
 interface Props {
   children: ReactNode;
@@ -23,6 +24,14 @@ export default class ErrorBoundary extends Component<Props, State> {
 
   public componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     console.error('ErrorBoundary caught an error:', error, errorInfo);
+
+    // Send error to tracking service
+    captureError(error, {
+      component: 'ErrorBoundary',
+      extra: {
+        componentStack: errorInfo.componentStack,
+      },
+    });
   }
 
   private handleReload = () => {

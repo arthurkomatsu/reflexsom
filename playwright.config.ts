@@ -24,7 +24,7 @@ export default defineConfig({
   /* Shared settings for all the projects below */
   use: {
     /* Base URL to use in actions like `await page.goto('/')` */
-    baseURL: 'http://localhost:4173',
+    baseURL: 'http://localhost:8000',
     /* Collect trace when retrying the failed test */
     trace: 'on-first-retry',
     /* Take screenshot on failure */
@@ -65,7 +65,7 @@ export default defineConfig({
   /* Run your local dev server before starting the tests */
   webServer: {
     command: process.env.CI ? 'npm run preview' : 'npm run dev',
-    url: process.env.CI ? 'http://localhost:4173' : 'http://localhost:5173',
+    url: 'http://localhost:8000',
     reuseExistingServer: !process.env.CI,
     timeout: 60 * 1000,
   },

@@ -5,16 +5,17 @@ import { handleNavClick as handleNavClickUtil } from '../utils/scroll';
 const footerLinks = {
   servicos: [
     { label: 'Iluminação', href: '#servicos' },
-    { label: 'Som Profissional', href: '#servicos' },
     { label: 'Efeitos Especiais', href: '#equipamentos' },
     { label: 'Videokê', href: '#equipamentos' },
     { label: 'DJ Profissional', href: '#servicos' },
+    { label: 'Telões e Projeção', href: '#servicos' },
   ],
   equipamentos: [
     { label: 'Sky Walker', href: '#equipamentos' },
     { label: 'Low Fog', href: '#equipamentos' },
     { label: 'Máquina de Neve', href: '#equipamentos' },
     { label: 'Máquina de Bolhas', href: '#equipamentos' },
+    { label: 'Sky Paper', href: '#equipamentos' },
     { label: 'Canhão Seguidor', href: '#equipamentos' },
   ],
   empresa: [

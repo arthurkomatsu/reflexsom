@@ -28,5 +28,5 @@ export const COMPANY = {
   location: 'Park Way, Brasília - DF',
   yearsOfExperience: 30,
   eventsCompleted: 1500,
-  karaokesSongs: 10000,
+  karaokesSongs: 40000,
 };

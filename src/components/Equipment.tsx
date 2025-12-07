@@ -173,6 +173,43 @@ const equipment: EquipmentItem[] = [
     },
   },
   {
+    id: 'skypaper',
+    name: 'Sky Paper',
+    tagline: 'Chuva de confetes e serpentinas',
+    image: '/assets/sky-paper.png',
+    description:
+      'Máquina de confetes profissional que lança papéis e serpentinas no ar, criando efeitos visuais dramáticos para momentos especiais.',
+    specs: [
+      'Disparo por ar comprimido ou CO2',
+      'Alcance de até 15 metros',
+      'Confetes e serpentinas coloridos',
+      'Papéis biodegradáveis disponíveis',
+    ],
+    idealFor: 'Casamentos, formaturas, shows e eventos corporativos.',
+    detailedInfo: {
+      whatIs:
+        'O Sky Paper é uma máquina de confetes profissional, também conhecida como canhão de confetes ou confetti blaster. Esse equipamento lança grandes quantidades de papéis coloridos e serpentinas no ar, criando um efeito visual espetacular em momentos climáticos de celebrações.',
+      howItWorks:
+        'A máquina utiliza ar comprimido ou gás CO2 para disparar confetes a uma altura de até 15 metros. O disparo pode ser único e poderoso para momentos específicos ou contínuo para criar uma chuva constante de papéis. Os confetes podem ser personalizados em cores e formatos.',
+      benefits: [
+        'Cria momentos visuais dramáticos e memoráveis',
+        'Papéis coloridos personalizáveis para combinar com a decoração',
+        'Opção de confetes biodegradáveis para eventos ao ar livre',
+        'Disparo controlado para timing perfeito',
+      ],
+      useCases: [
+        'Entrada dos noivos ou valsa do casamento',
+        'Celebração de formaturas e colação de grau',
+        'Shows e concertos em momentos climáticos',
+        'Reveillon e virada de ano',
+        'Eventos corporativos e lançamentos de produtos',
+      ],
+      technicalDetails:
+        'Trabalhamos com máquinas profissionais de disparo único (canhões) e contínuo (blowers). O alcance varia de 10 a 15 metros de altura. Oferecemos confetes metalizados, papéis coloridos e serpentinas em diversas cores. Papéis biodegradáveis disponíveis sob encomenda.',
+      tips: 'Para fotos incríveis, combine o disparo com iluminação colorida. Em casamentos, o momento ideal é durante a primeira dança ou saída dos noivos. Avise o fotógrafo para capturar o momento!',
+    },
+  },
+  {
     id: 'seguidor',
     name: 'Canhão Seguidor',
     tagline: 'Foco profissional',
@@ -207,19 +244,19 @@ const equipment: EquipmentItem[] = [
   {
     id: 'videoke',
     name: 'Videokê Profissional',
-    tagline: '+10.000 músicas',
+    tagline: '+40.000 músicas',
     image: '/assets/videoke-equipamento.jpg',
     description:
       'Sistema RAFT com repertório completo em diversos idiomas e estilos musicais, do forró ao clássico.',
-    specs: ['+10.000 músicas', 'Catálogo organizado', 'Controle remoto', 'Todos os estilos'],
+    specs: ['+40.000 músicas', 'Catálogo organizado', 'Controle remoto', 'Todos os estilos'],
     idealFor: 'Confraternizações, eventos empresariais e festas.',
     detailedInfo: {
       whatIs:
-        'O Videokê Profissional é um sistema completo de karaokê com mais de 10.000 músicas em alta qualidade. Diferente de aplicativos de celular, oferece áudio cristalino, vídeos originais e um catálogo organizado que facilita encontrar qualquer música rapidamente.',
+        'O Videokê Profissional é um sistema completo de karaokê com mais de 40.000 músicas em alta qualidade. Diferente de aplicativos de celular, oferece áudio cristalino, vídeos originais e um catálogo organizado que facilita encontrar qualquer música rapidamente.',
       howItWorks:
         'O sistema inclui uma central de reprodução conectada a uma TV ou projetor, onde aparecem a letra da música sincronizada com o vídeo. Os convidados escolhem as músicas através de um catálogo impresso ou digital e se revezam no microfone.',
       benefits: [
-        'Repertório gigante com +10.000 músicas',
+        'Repertório gigante com +40.000 músicas',
         'Qualidade de áudio profissional',
         'Fácil de usar para qualquer pessoa',
         'Anima festas de todos os estilos',

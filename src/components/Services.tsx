@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Volume2, Lightbulb, Music, Tv, Sparkles, Mic } from 'lucide-react';
+import { Lightbulb, Music, Tv, Sparkles, Mic } from 'lucide-react';
 import { buildWhatsAppUrl, WHATSAPP_MESSAGES } from '../constants';
 
 const services = [
@@ -10,13 +10,6 @@ const services = [
     description:
       'Moving heads, PAR LEDs, strobes e sistemas de iluminação cênica para criar ambientes únicos.',
     features: ['Moving Heads', 'PAR LEDs', 'Strobes', 'Iluminação Cênica'],
-  },
-  {
-    icon: Volume2,
-    title: 'Som Profissional',
-    description:
-      'Sistemas de som de alta qualidade para eventos de qualquer porte, com operadores experientes.',
-    features: ['Line Array', 'Subwoofers', 'Microfones', 'Mesa de Som'],
   },
   {
     icon: Sparkles,
@@ -42,8 +35,8 @@ const services = [
   {
     icon: Music,
     title: 'Videokê',
-    description: 'Sistema de karaokê profissional com mais de 10.000 músicas de todos os estilos.',
-    features: ['+10.000 Músicas', 'MPB', 'Sertanejo', 'Internacional'],
+    description: 'Sistema de karaokê profissional com mais de 40.000 músicas de todos os estilos.',
+    features: ['+40.000 Músicas', 'MPB', 'Sertanejo', 'Internacional'],
   },
 ];
 

@@ -18,7 +18,7 @@ export default function Hero() {
           src="/assets/hero-bg.jpg"
           alt="Background Studio"
           className="w-full h-full object-cover"
-          fetchPriority="high"
+          loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-dark/70 via-dark/80 to-dark" />
       </div>
@@ -77,8 +77,8 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-6 md:mb-10 text-balance"
         >
-          Iluminação profissional, som, efeitos especiais, DJ e locação de equipamentos para
-          transformar seu evento em uma experiência inesquecível. Atendemos{' '}
+          Iluminação profissional, efeitos especiais, DJ e locação de equipamentos para transformar
+          seu evento em uma experiência inesquecível. Atendemos{' '}
           <span className="text-primary font-semibold">Brasília, DF e Entorno</span>.
         </motion.p>
 

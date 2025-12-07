@@ -24,7 +24,7 @@ const testimonials = [
     name: 'Associação Nipo',
     role: 'Evento Cultural',
     content:
-      'O karaokê foi um sucesso absoluto! Com mais de 10.000 músicas, todos encontraram suas favoritas. Atendimento excepcional.',
+      'O karaokê foi um sucesso absoluto! Com mais de 40.000 músicas, todos encontraram suas favoritas. Atendimento excepcional.',
     rating: 5,
   },
   {

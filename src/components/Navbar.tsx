@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Phone, Instagram } from 'lucide-react';
+import { Menu, X, Instagram } from 'lucide-react';
 import { buildWhatsAppUrl, INSTAGRAM_URL, WHATSAPP_MESSAGES } from '../constants';
 import { handleNavClick } from '../utils/scroll';
 import { useScrollPosition } from '../hooks/useScrollPosition';
@@ -235,26 +235,26 @@ export default function Navbar() {
                   {item.label}
                 </motion.a>
               ))}
-              <div className="flex items-center gap-4 pt-4 border-t border-white/10">
+              <div className="flex items-center gap-6 pt-4 border-t border-white/10">
                 <a
                   href={INSTAGRAM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-white/80 hover:text-primary transition-colors"
+                  className="p-2 text-white/80 hover:text-primary transition-colors"
+                  aria-label="Instagram"
                 >
-                  <Instagram className="w-5 h-5" />
-                  <span>@reflex_som</span>
+                  <Instagram className="w-7 h-7" />
+                </a>
+                <a
+                  href={buildWhatsAppUrl(WHATSAPP_MESSAGES.default)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="p-2 text-white/80 hover:text-green-500 transition-colors"
+                  aria-label="WhatsApp"
+                >
+                  <WhatsAppIcon className="w-7 h-7" />
                 </a>
               </div>
-              <a
-                href={buildWhatsAppUrl(WHATSAPP_MESSAGES.default)}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp mt-2"
-              >
-                <Phone className="w-5 h-5" />
-                <span>Fale pelo WhatsApp</span>
-              </a>
             </div>
           </motion.div>
         )}

@@ -24,7 +24,6 @@ describe('Services', () => {
   it('renders all service cards', () => {
     render(<Services />);
     expect(screen.getByText('Iluminação Profissional')).toBeInTheDocument();
-    expect(screen.getByText('Som Profissional')).toBeInTheDocument();
     expect(screen.getByText('Efeitos Especiais')).toBeInTheDocument();
     expect(screen.getByText('DJ Profissional')).toBeInTheDocument();
     expect(screen.getByText('Telões e Projeção')).toBeInTheDocument();

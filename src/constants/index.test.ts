@@ -82,7 +82,7 @@ describe('Constants', () => {
     });
 
     it('should have karaoke songs count', () => {
-      expect(COMPANY.karaokesSongs).toBeGreaterThanOrEqual(10000);
+      expect(COMPANY.karaokesSongs).toBeGreaterThanOrEqual(40000);
     });
   });
 });

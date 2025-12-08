@@ -65,7 +65,7 @@ export default function Gallery() {
   };
 
   return (
-    <section id="galeria" className="section-padding relative">
+    <section id="galeria" className="section-padding bg-dark-50 relative">
       <div className="section-container" ref={ref}>
         {/* Header */}
         <motion.div

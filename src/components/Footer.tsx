@@ -3,13 +3,6 @@ import { buildWhatsAppUrl, INSTAGRAM_URL, WHATSAPP_PHONE_FORMATTED, COMPANY } fr
 import { handleNavClick as handleNavClickUtil } from '../utils/scroll';
 
 const footerLinks = {
-  servicos: [
-    { label: 'Iluminação', href: '#servicos' },
-    { label: 'Efeitos Especiais', href: '#equipamentos' },
-    { label: 'Videokê', href: '#equipamentos' },
-    { label: 'DJ Profissional', href: '#servicos' },
-    { label: 'Telões e Projeção', href: '#servicos' },
-  ],
   equipamentos: [
     { label: 'Sky Walker', href: '#equipamentos' },
     { label: 'Low Fog', href: '#equipamentos' },
@@ -73,24 +66,6 @@ export default function Footer() {
                 <Phone className="w-5 h-5" />
               </a>
             </div>
-          </div>
-
-          {/* Services */}
-          <div>
-            <h4 className="font-heading text-lg text-white mb-4">Serviços</h4>
-            <ul className="space-y-3">
-              {footerLinks.servicos.map((link) => (
-                <li key={link.label}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => onNavClick(e, link.href)}
-                    className="text-white/60 text-sm hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Equipment */}

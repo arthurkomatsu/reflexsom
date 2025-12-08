@@ -9,7 +9,6 @@ import WhatsAppIcon from './icons/WhatsAppIcon';
 const navItems = [
   { label: 'Início', href: '#inicio' },
   { label: 'Sobre', href: '#sobre' },
-  { label: 'Serviços', href: '#servicos' },
   { label: 'Equipamentos', href: '#equipamentos' },
   { label: 'Portfólio', href: '#galeria' },
   { label: 'Depoimentos', href: '#depoimentos' },

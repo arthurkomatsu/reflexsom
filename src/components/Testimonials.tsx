@@ -44,7 +44,7 @@ export default function Testimonials() {
   });
 
   return (
-    <section id="depoimentos" className="section-padding bg-dark-50 relative overflow-hidden">
+    <section id="depoimentos" className="section-padding relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-2xl h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
 

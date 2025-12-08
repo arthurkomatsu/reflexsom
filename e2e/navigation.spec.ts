@@ -25,10 +25,6 @@ test.describe('Navigation', () => {
   });
 
   test('should scroll to sections when clicking nav links', async ({ page }) => {
-    // Click on Services
-    await page.getByRole('link', { name: 'Serviços' }).first().click();
-    await expect(page.locator('#servicos')).toBeInViewport();
-
     // Click on Equipment
     await page.getByRole('link', { name: 'Equipamentos' }).first().click();
     await expect(page.locator('#equipamentos')).toBeInViewport();

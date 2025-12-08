@@ -4,7 +4,6 @@ import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
-import Services from './components/Services';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 import BackToTop from './components/BackToTop';
@@ -46,7 +45,6 @@ function HomePage() {
     <>
       <Hero />
       <About />
-      <Services />
       <Suspense fallback={<SectionSkeleton />}>
         <Equipment />
       </Suspense>

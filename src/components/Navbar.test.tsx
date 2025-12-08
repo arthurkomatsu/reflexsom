@@ -55,7 +55,6 @@ describe('Navbar', () => {
     render(<Navbar />);
     expect(screen.getByText('Início')).toBeInTheDocument();
     expect(screen.getByText('Sobre')).toBeInTheDocument();
-    expect(screen.getByText('Serviços')).toBeInTheDocument();
     expect(screen.getByText('Equipamentos')).toBeInTheDocument();
   });
 

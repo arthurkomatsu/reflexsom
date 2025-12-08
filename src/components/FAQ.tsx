@@ -149,7 +149,7 @@ export default function FAQ() {
   }, []);
 
   return (
-    <section id="faq" className="section-padding relative">
+    <section id="faq" className="section-padding bg-dark-50 relative">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent opacity-50" />
 

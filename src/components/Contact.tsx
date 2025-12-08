@@ -16,7 +16,7 @@ export default function Contact() {
   });
 
   return (
-    <section id="contato" className="section-padding bg-dark-50 relative overflow-hidden">
+    <section id="contato" className="section-padding relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent" />
 

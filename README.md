@@ -64,7 +64,6 @@ refactored9/
 │   │   ├── Navbar.tsx
 │   │   ├── Hero.tsx
 │   │   ├── About.tsx
-│   │   ├── Services.tsx
 │   │   ├── Equipment.tsx
 │   │   ├── Gallery.tsx
 │   │   ├── Testimonials.tsx

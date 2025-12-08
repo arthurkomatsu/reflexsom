@@ -14,7 +14,7 @@ const footerLinks = {
   empresa: [
     { label: 'Sobre Nós', href: '#sobre' },
     { label: 'Portfólio', href: '#galeria' },
-    { label: 'Depoimentos', href: '#depoimentos' },
+    { label: 'Clientes', href: '#clientes' },
     { label: 'Contato', href: '#contato' },
   ],
 };

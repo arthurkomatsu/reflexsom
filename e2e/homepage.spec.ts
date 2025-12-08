@@ -34,8 +34,8 @@ test.describe('Homepage', () => {
     // Gallery
     await expect(page.locator('#galeria')).toBeVisible();
 
-    // Testimonials
-    await expect(page.locator('#depoimentos')).toBeVisible();
+    // Clients
+    await expect(page.locator('#clientes')).toBeVisible();
 
     // FAQ
     await expect(page.locator('#faq')).toBeVisible();

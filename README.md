@@ -27,7 +27,7 @@ Um redesign moderno e elegante do website da Reflex Som, empresa com mais de 30 
 3. **Serviços** - Grid de serviços oferecidos
 4. **Equipamentos** - Catálogo detalhado com especificações
 5. **Galeria** - Portfolio de eventos com lightbox
-6. **Depoimentos** - Avaliações de clientes
+6. **Clientes** - Logos de clientes notáveis
 7. **Preços** - Cards de preços com CTA
 8. **Contato** - Formulário integrado com WhatsApp
 
@@ -66,7 +66,7 @@ refactored9/
 │   │   ├── About.tsx
 │   │   ├── Equipment.tsx
 │   │   ├── Gallery.tsx
-│   │   ├── Testimonials.tsx
+│   │   ├── Clients.tsx
 │   │   ├── Pricing.tsx
 │   │   ├── Contact.tsx
 │   │   ├── Footer.tsx

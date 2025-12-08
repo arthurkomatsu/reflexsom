@@ -123,12 +123,15 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <img
-                src="/assets/logo-reflex-som.jpg"
-                alt="Reflex Som"
-                className="h-12 w-auto rounded"
-                loading="eager"
-              />
+              <picture>
+                <source srcSet="/assets/logo-reflex-som.webp" type="image/webp" />
+                <img
+                  src="/assets/logo-reflex-som.jpg"
+                  alt="Reflex Som"
+                  className="h-12 w-auto rounded"
+                  loading="eager"
+                />
+              </picture>
             </motion.a>
 
             {/* Desktop Navigation */}

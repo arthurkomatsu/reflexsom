@@ -176,7 +176,7 @@ const equipment: EquipmentItem[] = [
     id: 'skypaper',
     name: 'Sky Paper',
     tagline: 'Chuva de confetes e serpentinas',
-    image: '/assets/sky-paper.png',
+    image: '/assets/sky-paper.jpg',
     description:
       'Máquina de confetes profissional que lança papéis e serpentinas no ar, criando efeitos visuais dramáticos para momentos especiais.',
     specs: [
@@ -326,12 +326,15 @@ export default function Equipment() {
               onClick={() => setSelectedEquipment(item)}
             >
               <div className="relative h-64 overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcSet={item.image.replace(/\.(jpg|png)$/i, '.webp')} type="image/webp" />
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    loading="lazy"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/50 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6">
                   <span className="text-primary text-sm font-medium">{item.tagline}</span>
@@ -409,12 +412,18 @@ export default function Equipment() {
 
               {/* Hero Image */}
               <div className="relative h-64 md:h-80 overflow-hidden rounded-t-3xl">
-                <img
-                  src={selectedEquipment.image}
-                  alt={selectedEquipment.name}
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <picture>
+                  <source
+                    srcSet={selectedEquipment.image.replace(/\.(jpg|png)$/i, '.webp')}
+                    type="image/webp"
+                  />
+                  <img
+                    src={selectedEquipment.image}
+                    alt={selectedEquipment.name}
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-dark-100 via-dark-100/60 to-transparent" />
                 <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                   <span className="inline-block px-3 py-1 bg-primary/20 text-primary text-sm font-medium rounded-full mb-2">

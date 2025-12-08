@@ -52,12 +52,15 @@ export default function About() {
             <div className="relative aspect-square max-w-md mx-auto">
               {/* Main image */}
               <div className="absolute inset-4 rounded-3xl overflow-hidden card-glass">
-                <img
-                  src="/assets/evento.jpg"
-                  alt="Evento"
-                  className="w-full h-full object-cover"
-                  loading="lazy"
-                />
+                <picture>
+                  <source srcSet="/assets/evento.webp" type="image/webp" />
+                  <img
+                    src="/assets/evento.jpg"
+                    alt="Evento"
+                    className="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </picture>
                 <div className="absolute inset-0 bg-gradient-to-t from-dark/60 to-transparent" />
               </div>
 

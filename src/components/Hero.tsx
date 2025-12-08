@@ -14,12 +14,15 @@ export default function Hero() {
     >
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
-        <img
-          src="/assets/hero-bg.jpg"
-          alt="Background Studio"
-          className="w-full h-full object-cover"
-          loading="eager"
-        />
+        <picture>
+          <source srcSet="/assets/hero-bg.webp" type="image/webp" />
+          <img
+            src="/assets/hero-bg.jpg"
+            alt="Background Studio"
+            className="w-full h-full object-cover"
+            loading="eager"
+          />
+        </picture>
         <div className="absolute inset-0 bg-gradient-to-b from-dark/70 via-dark/80 to-dark" />
       </div>
 

@@ -36,11 +36,14 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-4 lg:col-span-2">
             <a href="#inicio" onClick={(e) => onNavClick(e, '#inicio')}>
-              <img
-                src="/assets/logo-reflex-som.jpg"
-                alt="Reflex Som"
-                className="h-14 w-auto rounded mb-6"
-              />
+              <picture>
+                <source srcSet="/assets/logo-reflex-som.webp" type="image/webp" />
+                <img
+                  src="/assets/logo-reflex-som.jpg"
+                  alt="Reflex Som"
+                  className="h-14 w-auto rounded mb-6"
+                />
+              </picture>
             </a>
             <p className="text-white/60 text-sm leading-relaxed mb-6 max-w-sm">
               Há mais de 30 anos criando momentos inesquecíveis em Brasília. Locação de equipamentos

@@ -16,7 +16,6 @@ import NotFound from './components/NotFound';
 // Lazy load heavy components
 const Equipment = lazy(() => import('./components/Equipment'));
 const Gallery = lazy(() => import('./components/Gallery'));
-const Testimonials = lazy(() => import('./components/Testimonials'));
 const Clients = lazy(() => import('./components/Clients'));
 const FAQ = lazy(() => import('./components/FAQ'));
 const Contact = lazy(() => import('./components/Contact'));
@@ -51,9 +50,6 @@ function HomePage() {
       </Suspense>
       <Suspense fallback={<SectionSkeleton />}>
         <Gallery />
-      </Suspense>
-      <Suspense fallback={<SectionSkeleton />}>
-        <Testimonials />
       </Suspense>
       <Suspense fallback={<SectionSkeleton />}>
         <Clients />

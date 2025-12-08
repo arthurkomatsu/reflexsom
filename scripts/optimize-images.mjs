@@ -138,37 +138,63 @@ async function optimizeImage(filePath) {
   }
 }
 
+async function getAllImageFiles(dir) {
+  const entries = await fs.readdir(dir, { withFileTypes: true });
+  const files = [];
+  
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...await getAllImageFiles(fullPath));
+    } else if (/\.(jpg|jpeg|png)$/i.test(entry.name) && !entry.name.includes('-optimized')) {
+      files.push(fullPath);
+    }
+  }
+  
+  return files;
+}
+
 async function main() {
   console.log('='.repeat(50));
   console.log('Image Optimization Script');
   console.log('='.repeat(50));
   
-  const files = await fs.readdir(ASSETS_DIR);
-  const imageFiles = files.filter(f => 
-    /\.(jpg|jpeg|png)$/i.test(f) && !f.includes('-optimized')
-  );
+  const imageFiles = await getAllImageFiles(ASSETS_DIR);
   
-  console.log(`\nFound ${imageFiles.length} images to optimize in ${ASSETS_DIR}\n`);
+  console.log(`\nFound ${imageFiles.length} images to optimize in ${ASSETS_DIR} (including subdirectories)\n`);
   
   // Calculate initial total size
   let initialTotal = 0;
   for (const file of imageFiles) {
-    initialTotal += await getFileSize(path.join(ASSETS_DIR, file));
+    initialTotal += await getFileSize(file);
   }
   console.log(`Initial total size: ${formatBytes(initialTotal)}`);
   
   // Process each image
   for (const file of imageFiles) {
-    await optimizeImage(path.join(ASSETS_DIR, file));
+    await optimizeImage(file);
   }
   
-  // Calculate final sizes
-  const finalFiles = await fs.readdir(ASSETS_DIR);
-  const allImages = finalFiles.filter(f => /\.(jpg|jpeg|png|webp)$/i.test(f));
+  // Calculate final sizes (including subdirectories)
+  async function getAllFinalImages(dir) {
+    const entries = await fs.readdir(dir, { withFileTypes: true });
+    const files = [];
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name);
+      if (entry.isDirectory()) {
+        files.push(...await getAllFinalImages(fullPath));
+      } else if (/\.(jpg|jpeg|png|webp)$/i.test(entry.name)) {
+        files.push(fullPath);
+      }
+    }
+    return files;
+  }
+  
+  const allImages = await getAllFinalImages(ASSETS_DIR);
   
   let finalTotal = 0;
   for (const file of allImages) {
-    finalTotal += await getFileSize(path.join(ASSETS_DIR, file));
+    finalTotal += await getFileSize(file);
   }
   
   console.log('\n' + '='.repeat(50));

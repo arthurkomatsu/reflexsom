@@ -5,24 +5,24 @@ const clients = [
   // Major Commercial
   { name: 'ParkShopping', logo: '/assets/logos/parkshopping.png' },
   { name: 'Taguatinga Shopping', logo: '/assets/logos/taguatinga-shopping.png' },
-  { name: 'Grupo Saga', logo: '/assets/logos/grupo-saga.webp' },
+  { name: 'Grupo Saga', logo: '/assets/logos/saga.jpg' },
   { name: 'Brookfield Empreendimento', logo: '/assets/logos/brookfield.png' },
   { name: 'Alphaville Brasília', logo: '/assets/logos/alphaville.jpeg' },
-  { name: 'Sabin', logo: '/assets/logos/sabin.webp' },
+  { name: 'Sabin', logo: '/assets/logos/sabin.jpeg' },
 
   // Education
-  { name: 'Escola Americana', logo: '/assets/logos/escola-americana.webp' },
-  { name: 'Escola das Nações', logo: '/assets/logos/escola-das-nacoes.webp' },
+  { name: 'Escola Americana', logo: '/assets/logos/escola-americana.png' },
+  { name: 'Escola das Nações', logo: '/assets/logos/escola-das-nacoes.png' },
   { name: 'Mackenzie', logo: '/assets/logos/mackenzie.png' },
 
   // Entertainment & Culture
   { name: '60 Minutos Escape Room', logo: '/assets/logos/60-minutos-escape-room.png' },
-  { name: 'SESC', logo: '/assets/logos/sesc.webp' },
+  { name: 'SESC', logo: '/assets/logos/sesc.png' },
 
   // Institutions
-  { name: 'GDF', logo: '/assets/logos/gdf.webp' },
+  { name: 'GDF', logo: '/assets/logos/gdf.jpeg' },
   { name: 'Cavalaria do Exército', logo: '/assets/logos/cavalaria.png' },
-  { name: 'CBM DF', logo: '/assets/logos/cbm-df.webp' },
+  { name: 'CBM DF', logo: '/assets/logos/cbm.webp' },
 
   // Religious
   { name: 'Igreja Sara Nossa Terra', logo: '/assets/logos/sara.png' },

@@ -10,7 +10,7 @@ const STATIC_ASSETS = [
   '/index.html',
   '/offline.html',
   '/manifest.json',
-  '/assets/logo-reflex-som.jpg',
+  '/assets/logo-reflex-som.png',
   '/assets/hero-bg.jpg',
 ];
 

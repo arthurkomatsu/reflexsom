@@ -1,6 +1,6 @@
 # Reflex Som - Website Redesign
 
-![Reflex Som](./public/assets/logo-reflex-som.jpg)
+![Reflex Som](./public/assets/logo-reflex-som.png)
 
 Um redesign moderno e elegante do website da Reflex Som, empresa com mais de 30 anos de experiência em locação de equipamentos profissionais de iluminação, som e efeitos especiais em Brasília.
 

@@ -39,7 +39,7 @@ export default function Footer() {
               <picture>
                 <source srcSet="/assets/logo-reflex-som.webp" type="image/webp" />
                 <img
-                  src="/assets/logo-reflex-som.jpg"
+                  src="/assets/logo-reflex-som.png"
                   alt="Reflex Som"
                   className="h-14 w-auto rounded mb-6"
                 />

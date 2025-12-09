@@ -126,7 +126,7 @@ export default function Navbar() {
               <picture>
                 <source srcSet="/assets/logo-reflex-som.webp" type="image/webp" />
                 <img
-                  src="/assets/logo-reflex-som.jpg"
+                  src="/assets/logo-reflex-som.png"
                   alt="Reflex Som"
                   className="h-12 w-auto rounded"
                   loading="eager"

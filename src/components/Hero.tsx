@@ -99,11 +99,6 @@ export default function Hero() {
               label: 'Anos de experiência',
             },
             { id: 'events', value: `+${COMPANY.eventsCompleted}`, label: 'Eventos realizados' },
-            {
-              id: 'songs',
-              value: `+${(COMPANY.karaokesSongs / 1000).toFixed(0)}k`,
-              label: 'Músicas no Karaokê',
-            },
           ].map((stat) => (
             <div key={stat.id} className="text-center">
               <div className="font-heading text-4xl md:text-5xl text-primary">{stat.value}</div>

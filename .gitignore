@@ -62,3 +62,6 @@ Thumbs.db
 *.log
 .cache/
 .venv
+
+# Reference repository (for copying configs)
+.reference-repo/

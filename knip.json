@@ -1,7 +1,13 @@
 {
   "$schema": "https://unpkg.com/knip@latest/schema.json",
-  "entry": ["src/main.tsx", "vitest.config.ts", "playwright.config.ts"],
-  "project": ["src/**/*.{ts,tsx}"],
+  "entry": [
+    "src/main.tsx",
+    "vitest.config.ts",
+    "playwright.config.ts"
+  ],
+  "project": [
+    "src/**/*.{ts,tsx}"
+  ],
   "ignore": [
     "src/vite-env.d.ts",
     "src/**/*.test.{ts,tsx}",
@@ -17,6 +23,11 @@
     "src/types/index.ts",
     "e2e/**"
   ],
-  "ignoreDependencies": ["@lhci/cli", "@vitest/coverage-v8"],
+  "ignoreDependencies": [
+    "@lhci/cli",
+    "@vitest/coverage-v8",
+    "lint-staged",
+    "sharp"
+  ],
   "ignoreExportsUsedInFile": true
 }

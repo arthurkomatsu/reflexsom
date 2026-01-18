@@ -7,7 +7,8 @@ on:
     branches: [main, master]
 
 jobs:
-  build-and-lint:
+  lint-and-format:
+    name: Lint & Format
     runs-on: ubuntu-latest
 
     steps:
@@ -29,17 +30,136 @@ jobs:
       - name: Run ESLint
         run: npm run lint
 
+  typecheck:
+    name: TypeScript Type Check
+    runs-on: ubuntu-latest
+    needs: lint-and-format
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Type check
         run: npm run typecheck
+
+  knip:
+    name: Dead Code Detection
+    runs-on: ubuntu-latest
+    needs: lint-and-format
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
 
       - name: Check for dead code and unused exports
         run: npm run knip
 
+  test:
+    name: Unit Tests
+    runs-on: ubuntu-latest
+    needs: lint-and-format
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Run unit tests
         run: npm run test:run
 
+  build-check:
+    name: Build Check
+    runs-on: ubuntu-latest
+    needs: [typecheck, knip, test]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
       - name: Build
         run: npm run build
+
+      - name: Verify build outputs
+        run: |
+          echo "Checking build outputs..."
+
+          # Check dist folder exists and has content
+          if [ -d "dist" ]; then
+            echo "✓ dist folder exists"
+          else
+            echo "✗ dist folder missing"
+            exit 1
+          fi
+
+          # Check index.html exists
+          if [ -f "dist/index.html" ]; then
+            echo "✓ dist/index.html exists"
+          else
+            echo "✗ dist/index.html missing"
+            exit 1
+          fi
+
+          # Check file sizes (should be non-empty)
+          size=$(stat -c%s "dist/index.html")
+          if [ "$size" -gt 500 ]; then
+            echo "✓ dist/index.html has content ($size bytes)"
+          else
+            echo "✗ dist/index.html seems too small ($size bytes)"
+            exit 1
+          fi
+
+          # Check for JS assets
+          if ls dist/assets/*.js 1> /dev/null 2>&1; then
+            echo "✓ JavaScript assets found"
+          else
+            echo "✗ JavaScript assets missing"
+            exit 1
+          fi
+
+          # Check for CSS assets
+          if ls dist/assets/*.css 1> /dev/null 2>&1; then
+            echo "✓ CSS assets found"
+          else
+            echo "✗ CSS assets missing"
+            exit 1
+          fi
+
+          echo "All build checks passed!"
 
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
@@ -48,9 +168,79 @@ jobs:
           path: dist/
           retention-days: 7
 
-  e2e-tests:
+  validate-html:
+    name: Validate HTML
     runs-on: ubuntu-latest
-    needs: build-and-lint
+    needs: build-check
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Validate HTML structure
+        run: |
+          echo "Checking dist/index.html..."
+          if grep -qi "<!doctype html>" dist/index.html; then
+            echo "✓ DOCTYPE found"
+          else
+            echo "✗ DOCTYPE missing"
+            exit 1
+          fi
+
+          if grep -q "</html>" dist/index.html; then
+            echo "✓ HTML closing tag found"
+          else
+            echo "✗ HTML closing tag missing"
+            exit 1
+          fi
+
+          if grep -q "<title>" dist/index.html; then
+            echo "✓ Title tag found"
+          else
+            echo "✗ Title tag missing"
+            exit 1
+          fi
+
+          echo "All HTML validation checks passed!"
+
+  security-scan:
+    name: Security Scan
+    runs-on: ubuntu-latest
+    needs: lint-and-format
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Scan for exposed secrets
+        run: npm run security:scan
+
+  e2e-tests:
+    name: E2E Tests
+    runs-on: ubuntu-latest
+    needs: build-check
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -71,8 +261,24 @@ jobs:
           name: dist
           path: dist/
 
-      - name: Install Playwright browsers
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(npm ls @playwright/test --json | jq -r '.dependencies["@playwright/test"].version')" >> $GITHUB_OUTPUT
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/ms-playwright
+          key: playwright-chromium-${{ runner.os }}-${{ steps.playwright-version.outputs.version }}
+
+      - name: Install Playwright Browsers
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install chromium --with-deps
+
+      - name: Install Playwright system dependencies
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Run E2E tests
         run: npm run test:e2e
@@ -81,15 +287,25 @@ jobs:
 
       - name: Upload Playwright report
         uses: actions/upload-artifact@v4
-        if: failure()
+        if: ${{ !cancelled() }}
         with:
           name: playwright-report
           path: playwright-report/
-          retention-days: 7
+          retention-days: 30
+
+      - name: Upload test results
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: test-results
+          path: test-results/
+          retention-days: 30
 
   lighthouse:
+    name: Lighthouse SEO Audit
     runs-on: ubuntu-latest
-    needs: build-and-lint
+    needs: build-check
+    timeout-minutes: 10
 
     steps:
       - name: Checkout repository
@@ -104,12 +320,31 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+      - name: Install Lighthouse CI
+        run: npm install -g @lhci/cli
+
+      - name: Start server in background
+        run: |
+          npm run preview -- --port 4173 &
+          # Wait for server to be ready
+          sleep 5
+          curl -s http://localhost:4173 > /dev/null || (echo "Server failed to start" && exit 1)
 
       - name: Run Lighthouse CI
-        run: |
-          npm install -g @lhci/cli
-          lhci autorun
+        run: lhci autorun
         env:
           LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
+
+      - name: Upload Lighthouse Report
+        uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: lighthouse-report
+          path: .lighthouseci/
+          retention-days: 30

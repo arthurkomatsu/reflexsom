@@ -1,2 +1,83 @@
+# Check that package-lock.json is in sync with package.json
+echo "🔍 Checking package-lock.json sync..."
+npm ci --dry-run 2>&1 | grep -q "npm error" && {
+    echo "❌ package-lock.json is out of sync with package.json"
+    echo "Run 'npm install' to update the lock file, then stage package-lock.json"
+    exit 1
+}
+echo "✅ package-lock.json is in sync"
+
+# Check for oversized images (>400kB)
+OVERSIZED=$(find . -type f \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.webp" \) ! -path "./node_modules/*" ! -path "./.git/*" ! -path "./dist/*" ! -name "*.bk" -size +400k 2>/dev/null)
+
+if [ -n "$OVERSIZED" ]; then
+    echo "❌ Found images larger than 400kB:"
+    echo "$OVERSIZED"
+    echo ""
+    echo "Run 'npm run optimize:images' to optimize them."
+    exit 1
+fi
+echo "✅ No oversized images found"
+
+# Check for em dash character (—) usage
+EM_DASH_FILES=$(git diff --cached --name-only | grep -v "^\.husky/" | xargs grep -l "—" 2>/dev/null || true)
+
+if [ -n "$EM_DASH_FILES" ]; then
+    echo "❌ Found em dash character (—) in the following files:"
+    echo "$EM_DASH_FILES"
+    echo ""
+    echo "Please do not use the em dash (—) character in text."
+    echo "Instead, prefer using:"
+    echo "  • Commas (,) for pauses"
+    echo "  • Colons (:) for introducing lists or explanations"
+    echo "  • Rephrasing the sentence for better clarity"
+    exit 1
+fi
+echo "✅ No em dash characters found"
+
+# Run lint-staged for formatting and linting
+echo "🔍 Running lint-staged..."
 npx lint-staged
-npm run test:run
+
+# Run Prettier format check to ensure all files are formatted
+echo "🔍 Checking code formatting..."
+npm run format:check || {
+    echo "❌ Code formatting issues found. Run 'npm run format' to fix them."
+    exit 1
+}
+echo "✅ Code formatting check passed"
+
+# Run full lint check
+echo "🔍 Running ESLint..."
+npm run lint || {
+    echo "❌ ESLint errors found. Run 'npm run lint:fix' to fix them."
+    exit 1
+}
+echo "✅ ESLint check passed"
+
+# Run TypeScript type check
+echo "🔍 Running TypeScript type check..."
+npm run typecheck || {
+    echo "❌ TypeScript type errors found. Fix the errors above."
+    exit 1
+}
+echo "✅ TypeScript type check passed"
+
+# Run Knip for dead code detection
+echo "🔍 Checking for dead code..."
+npm run knip || {
+    echo "❌ Dead code or unused exports found. Run 'npm run knip:fix' to fix them."
+    exit 1
+}
+echo "✅ No dead code found"
+
+# Run unit tests
+echo "🔍 Running unit tests..."
+npm run test:run || {
+    echo "❌ Unit tests failed. Fix the failing tests above."
+    exit 1
+}
+echo "✅ All unit tests passed"
+
+echo ""
+echo "🎉 All pre-commit checks passed!"

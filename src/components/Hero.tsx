@@ -73,17 +73,12 @@ export default function Hero() {
           <span className="text-gradient">Evento</span>
         </motion.h1>
 
-        {/* Subheading */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-6 md:mb-10 text-balance"
-        >
+        {/* Subheading - No animation to prevent LCP delay */}
+        <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-6 md:mb-10 text-balance">
           Iluminação profissional, efeitos especiais e locação de equipamentos para transformar seu
           evento em uma experiência inesquecível. Atendemos{' '}
           <span className="text-primary font-semibold">Brasília, DF e Entorno</span>.
-        </motion.p>
+        </p>
 
         {/* Stats */}
         <motion.div

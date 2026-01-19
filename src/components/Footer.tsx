@@ -42,6 +42,9 @@ export default function Footer() {
                   src="/assets/logo-reflex-som.png"
                   alt="Reflex Som"
                   className="h-14 w-auto rounded mb-6"
+                  loading="lazy"
+                  width="158"
+                  height="48"
                 />
               </picture>
             </a>

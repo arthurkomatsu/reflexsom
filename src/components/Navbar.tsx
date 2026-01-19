@@ -129,6 +129,8 @@ export default function Navbar() {
                   src="/assets/logo-reflex-som.png"
                   alt="Reflex Som"
                   className="h-12 w-auto rounded"
+                  width={158}
+                  height={48}
                   loading="eager"
                 />
               </picture>

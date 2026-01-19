@@ -327,11 +327,17 @@ export default function Equipment() {
             >
               <div className="relative h-64 overflow-hidden">
                 <picture>
-                  <source srcSet={item.image.replace(/\.(jpg|png)$/i, '.webp')} type="image/webp" />
+                  <source
+                    srcSet={`${item.image.replace(/\.(jpg|png)$/i, '-small.webp')} 400w, ${item.image.replace(/\.(jpg|png)$/i, '-large.webp')} 600w, ${item.image.replace(/\.(jpg|png)$/i, '-medium.webp')} 800w`}
+                    sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 400px"
+                    type="image/webp"
+                  />
                   <img
                     src={item.image}
                     alt={item.name}
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    width={400}
+                    height={256}
                     loading="lazy"
                   />
                 </picture>
@@ -421,6 +427,8 @@ export default function Equipment() {
                     src={selectedEquipment.image}
                     alt={selectedEquipment.name}
                     className="w-full h-full object-cover"
+                    width={800}
+                    height={320}
                     loading="lazy"
                   />
                 </picture>

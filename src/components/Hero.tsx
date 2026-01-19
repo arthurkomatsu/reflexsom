@@ -15,12 +15,19 @@ export default function Hero() {
       {/* Background Image with Overlay */}
       <div className="absolute inset-0">
         <picture>
-          <source srcSet="/assets/hero-bg.webp" type="image/webp" />
+          <source
+            srcSet="/assets/hero-bg-small.webp 600w, /assets/hero-bg-medium.webp 1024w, /assets/hero-bg.webp 1920w"
+            sizes="(max-width: 600px) 100vw, (max-width: 1024px) 100vw, 100vw"
+            type="image/webp"
+          />
           <img
             src="/assets/hero-bg.jpg"
             alt="Background Studio"
             className="w-full h-full object-cover"
+            width={1920}
+            height={936}
             loading="eager"
+            fetchPriority="high"
           />
         </picture>
         <div className="absolute inset-0 bg-gradient-to-b from-dark/70 via-dark/80 to-dark" />
@@ -65,7 +72,7 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{
             duration: prefersReducedMotion ? 0 : 0.8,
-            delay: prefersReducedMotion ? 0 : 0.2,
+            delay: 0,
           }}
           className="heading-xl text-white mb-4 md:mb-6"
         >

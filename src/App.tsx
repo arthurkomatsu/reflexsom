@@ -1,6 +1,5 @@
 import { lazy, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -9,7 +8,6 @@ import WhatsAppButton from './components/WhatsAppButton';
 import BackToTop from './components/BackToTop';
 import SkipToContent from './components/SkipToContent';
 import ErrorBoundary from './components/ErrorBoundary';
-import PageTransition from './components/PageTransition';
 import PageLoadingBar from './components/PageLoadingBar';
 import NotFound from './components/NotFound';
 
@@ -75,30 +73,26 @@ function App() {
       <WhatsAppButton />
       <BackToTop />
 
-      <AnimatePresence mode="wait">
-        <PageTransition>
-          <div className="relative">
-            {/* Skip to content for accessibility */}
-            <SkipToContent />
+      <div className="relative">
+        {/* Skip to content for accessibility */}
+        <SkipToContent />
 
-            {/* Subtle noise texture overlay */}
-            <div className="noise-overlay" />
+        {/* Subtle noise texture overlay */}
+        <div className="noise-overlay" />
 
-            {/* Main content */}
-            <main id="main-content">
-              <Routes>
-                <Route path="/" element={<HomePage />} />
-                {/* Future routes can be added here:
+        {/* Main content */}
+        <main id="main-content">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            {/* Future routes can be added here:
                     <Route path="/equipamentos/:id" element={<EquipmentDetail />} />
                     <Route path="/blog" element={<Blog />} />
                 */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </PageTransition>
-      </AnimatePresence>
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
     </ErrorBoundary>
   );
 }

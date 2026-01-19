@@ -23,11 +23,16 @@
     "src/types/index.ts",
     "e2e/**"
   ],
+  "ignoreBinaries": [
+    "python3"
+  ],
   "ignoreDependencies": [
     "@lhci/cli",
     "@vitest/coverage-v8",
     "lint-staged",
-    "sharp"
+    "sharp",
+    "vite-plugin-compression",
+    "framer-motion"
   ],
   "ignoreExportsUsedInFile": true
 }

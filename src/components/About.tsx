@@ -53,11 +53,17 @@ export default function About() {
               {/* Main image */}
               <div className="absolute inset-4 rounded-3xl overflow-hidden card-glass">
                 <picture>
-                  <source srcSet="/assets/evento.webp" type="image/webp" />
+                  <source
+                    srcSet="/assets/evento-small.webp 400w, /assets/evento-large.webp 600w, /assets/evento-medium.webp 800w"
+                    sizes="(max-width: 480px) 400px, (max-width: 768px) 600px, 400px"
+                    type="image/webp"
+                  />
                   <img
                     src="/assets/evento.jpg"
                     alt="Evento"
                     className="w-full h-full object-cover"
+                    width={800}
+                    height={800}
                     loading="lazy"
                   />
                 </picture>

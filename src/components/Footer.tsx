@@ -127,7 +127,7 @@ export default function Footer() {
       {/* Bottom Bar */}
       <div className="border-t border-white/5">
         <div className="section-container py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-white/40 text-sm text-center sm:text-left">
+          <p className="text-white/60 text-sm text-center sm:text-left">
             © {new Date().getFullYear()} Reflex Som. Todos os direitos reservados.
           </p>
           <button

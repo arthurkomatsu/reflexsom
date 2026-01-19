@@ -27,6 +27,15 @@ if [ $? -ne 0 ]; then
 fi
 echo "✅ No AI metadata found in images"
 
+# Check for npm vulnerabilities (moderate or higher)
+echo "🔍 Checking for npm vulnerabilities..."
+npm audit --audit-level=moderate || {
+    echo "❌ High or Moderate npm vulnerabilities found."
+    echo "Run 'npm audit' to see details and 'npm audit fix' to resolve."
+    exit 1
+}
+echo "✅ No critical npm vulnerabilities found"
+
 # Check for em dash character (—) usage
 EM_DASH_FILES=$(git diff --cached --name-only | grep -v "^\.husky/" | xargs grep -l "—" 2>/dev/null || true)
 

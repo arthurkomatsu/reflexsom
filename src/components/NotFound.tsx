@@ -1,7 +1,20 @@
+import { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Home, ArrowLeft } from 'lucide-react';
 
 export default function NotFound() {
+  useEffect(() => {
+    // Add noindex tag to prevent search engines from indexing 404 pages
+    const meta = document.createElement('meta');
+    meta.name = 'robots';
+    meta.content = 'noindex';
+    document.head.appendChild(meta);
+
+    return () => {
+      // Clean up when leaving the 404 page
+      document.head.removeChild(meta);
+    };
+  }, []);
   return (
     <div className="min-h-screen bg-dark flex items-center justify-center p-4">
       <div className="text-center max-w-lg">

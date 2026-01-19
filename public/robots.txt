@@ -1,11 +1,11 @@
 # Robots.txt for Reflex Som
-# https://www.reflexsom.com.br
+# https://reflexsom.com.br
 
 User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://www.reflexsom.com.br/sitemap.xml
+Sitemap: https://reflexsom.com.br/sitemap.xml
 
 # Disallow admin or private areas (if any)
 Disallow: /admin/

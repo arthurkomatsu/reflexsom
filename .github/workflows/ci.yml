@@ -236,6 +236,9 @@ jobs:
       - name: Scan for exposed secrets
         run: npm run security:scan
 
+      - name: Audit npm dependencies
+        run: npm audit --audit-level=moderate
+
   validate-seo:
     name: Validate SEO
     runs-on: ubuntu-latest

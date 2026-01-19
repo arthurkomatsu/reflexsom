@@ -27,7 +27,12 @@
     "test:e2e:headed": "playwright test --headed",
     "optimize:images": "node scripts/optimize-images.mjs",
     "security:scan": "node scripts/security-scan.mjs",
-    "validate:seo": "node scripts/seo-validator.mjs"
+    "validate:seo": "node scripts/seo-validator.mjs",
+    "validate:sitemap": "node scripts/validate-sitemap.mjs",
+    "validate:robots": "node scripts/validate-robots.mjs",
+    "validate:url-format": "node scripts/validate-url-format.mjs",
+    "validate:links": "node scripts/validate-links.mjs",
+    "validate:css": "node scripts/validate-css.mjs"
   },
   "lint-staged": {
     "*.{ts,tsx}": [

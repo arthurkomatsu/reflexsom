@@ -19,6 +19,14 @@ if [ -n "$OVERSIZED" ]; then
 fi
 echo "✅ No oversized images found"
 
+# Check for AI/Google metadata in images
+echo "🔍 Checking for AI/Google metadata in images..."
+python3 scripts/strip_ai_metadata.py --check
+if [ $? -ne 0 ]; then
+    exit 1
+fi
+echo "✅ No AI metadata found in images"
+
 # Check for em dash character (—) usage
 EM_DASH_FILES=$(git diff --cached --name-only | grep -v "^\.husky/" | xargs grep -l "—" 2>/dev/null || true)
 

@@ -24,8 +24,10 @@ export default function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const lastScrollY = useRef(0);
 
-  // Handle navbar visibility on scroll
+  // Handle navbar visibility on scroll with throttling
   useEffect(() => {
+    let ticking = false;
+
     const controlNavbar = () => {
       const currentScrollY = window.scrollY;
       const isMobile = window.innerWidth < 768; // md breakpoint
@@ -47,11 +49,20 @@ export default function Navbar() {
       lastScrollY.current = currentScrollY;
     };
 
-    window.addEventListener('scroll', controlNavbar, { passive: true });
-    window.addEventListener('resize', controlNavbar);
+    const onScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          controlNavbar();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    // Resize could change isMobile, but scroll handler covers it eventually. Optimization: good enough.
     return () => {
-      window.removeEventListener('scroll', controlNavbar);
-      window.removeEventListener('resize', controlNavbar);
+      window.removeEventListener('scroll', onScroll);
     };
   }, []);
 

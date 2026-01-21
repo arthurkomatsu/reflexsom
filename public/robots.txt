@@ -7,6 +7,16 @@ Allow: /
 # Sitemap location
 Sitemap: https://reflexsom.com.br/sitemap.xml
 
-# Disallow admin or private areas (if any)
+# Disallow admin or private areas
 Disallow: /admin/
 Disallow: /private/
+
+# Block legacy Wix API endpoints
+Disallow: /_api/
+
+# Block old Wix page paths (redirected but shouldn't be crawled)
+Disallow: /sobre-1
+Disallow: /kits
+Disallow: /fotos
+Disallow: /low-fog
+Disallow: /copia-low-fog
